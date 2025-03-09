@@ -1,0 +1,16 @@
+title: "我的 Jekyll 網站"
+description: "這是一個使用 Jekyll 建立的 GitHub Pages 網站"
+baseurl: "/website"  # 這個要對應你的 GitHub Pages 路徑
+url: "https://thekingwithdonkeyears.github.io"
+
+# 確保 Jekyll 讀取 _pages 內的 HTML 檔案
+include:
+  - _pages
+
+# 設定 Jekyll Plugins（如果有需要）
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# 讓 Markdown 能正常解析
+markdown: kramdown
