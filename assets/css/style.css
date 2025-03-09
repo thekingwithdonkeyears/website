@@ -1,12 +1,14 @@
-/* 🌙 全站 Dark Mode 風格 */
+/* 🌙 全站 Dark Mode 配色（黑色 + 白色） */
 :root {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --link-color: #81c784;
-    --border-color: #333;
-    --card-bg: #1e1e1e;
+    --bg-color: #121212;  /* 深黑背景 */
+    --text-color: #f5f5f5;  /* 亮白文字 */
+    --link-color: #ffffff;  /* 連結為純白 */
+    --hover-color: #b3b3b3;  /* 滑鼠懸停時變淺灰 */
+    --border-color: #2a2a2a;  /* 邊界顏色 */
+    --content-bg: #1e1e1e;  /* 內容區塊背景 */
 }
 
+/* 🌍 整體網站風格 */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -14,37 +16,77 @@ body {
     line-height: 1.8;
     margin: 0;
     padding: 0;
-    transition: background 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 讓主要內容區域更有層次感 */
+/* 🖥️ 內容區域置中，限制最大寬度 */
 .container {
-    max-width: 800px;
-    margin: 20px auto;
+    max-width: 80%;
+    width: 100%;
+    margin: 30px auto;
+    background-color: var(--content-bg);
     padding: 20px;
-    background-color: var(--card-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* 標題設計 */
+/* 🏠 美觀的橫排導航列 */
+.navbar {
+    width: 100%;
+    background-color: #000;  /* 純黑導航欄 */
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.navbar ul li a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: var(--hover-color);
+    background-color: #333;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+/* ✏️ 內容區塊的標題樣式 */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Noto Serif TC", "KaiTi", "Microsoft JhengHei", serif;
     color: var(--text-color);
+    text-align: center;
 }
 
-/* 連結設計 */
-a {
-    color: var(--link-color);
-    text-decoration: none;
-    font-weight: bold;
+/* 📄 文字區塊的邊界與排版 */
+p {
+    text-align: justify;
+    padding: 10px 0;
 }
 
-a:hover {
-    text-decoration: underline;
+/* 📝 讓列表更有層次感 */
+ul {
+    padding-left: 20px;
 }
 
-/* 分隔線 */
+/* 🎨 讓分隔線更有質感 */
 hr {
     border: none;
     height: 2px;
@@ -52,93 +94,29 @@ hr {
     margin: 20px 0;
 }
 
-/* 導航欄設計 */
-nav {
-    background: var(--card-bg);
-    padding: 10px;
-    text-align: center;
-}
-
-nav ul {
-    padding: 0;
-    list-style: none;
-}
-
-nav li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav a {
-    font-size: 1.1em;
-}
-
-/* 讓列表好看一點 */
-ul {
-    list-style: square;
-    padding-left: 20px;
-}
-
-/* 美化按鈕 */
+/* 🎀 美化按鈕 */
 button {
-    background: var(--link-color);
-    color: #fff;
+    background: var(--text-color);
+    color: var(--bg-color);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 button:hover {
-    background: #66bb6a;
+    background: var(--hover-color);
+    color: var(--bg-color);
 }
 
-/* 讓表格更適應 Dark Mode */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-table, th, td {
-    border: 1px solid var(--border-color);
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background: #2a2a2a;
-}
-
-/* 讓程式碼區塊變漂亮 */
-pre {
-    background: #1a1a1a;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
-}
-
-/* 讓 blockquote（引用）更好看 */
-blockquote {
-    border-left: 5px solid var(--link-color);
-    padding: 10px 15px;
-    font-style: italic;
-    color: var(--text-color);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* RWD 設定：小螢幕的排版 */
+/* 📱 RWD 設定：小螢幕的排版 */
 @media (max-width: 768px) {
     .container {
-        padding: 15px;
+        max-width: 90%;
     }
 
-    nav li {
+    .navbar ul li {
         display: block;
         margin: 10px 0;
     }
