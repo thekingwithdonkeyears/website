@@ -1,49 +1,43 @@
 ---
-layout: page
-title: 首頁
-date: 2022-08-06 12:36:54.000000000 +08:00
-type: page
-parent_id: '0'
-published: true
-password: ''
-status: publish
-categories: []
-tags: []
-meta:
-  vantage_panels_no_legacy: 'true'
-  _tft_homepage_template: blank-canvas-blocks
-  _wp_page_template: default
-  _last_editor_used_jetpack: block-editor
-  _jetpack_related_posts_cache: a:1:{s:32:"bfc62710165ed7b51223b165689d40a3";a:2:{s:7:"expires";i:1738960557;s:7:"payload";a:2:{i:0;a:1:{s:2:"id";i:156;}i:1;a:1:{s:2:"id";i:146;}}}}
-  amp_status: disabled
-  _edit_last: '218895707'
-author:
-  login: thekingwithdonkeyears
-  email: thekingwithdonkeyears.wordpress@gmail.com
-  display_name: 國王和她的驢耳朵
-  first_name: ''
-  last_name: ''
-permalink: "/"
+layout: default
+title: Home
 ---
 
-<ul>
-    {% for page in site.pages %}
-      {% if page.path contains '_pages/' and page.extname == ".html" %}
-        <li><a href="{{ page.url | relative_url }}">{{ page.title }}</a></li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-  
-<p><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"><br />
-<!-- wp:heading --><html><body></p>
-<h2 class="wp-block-heading"></h2>
-<p><!-- /wp:heading --></p>
-<p><!-- wp:heading {"level":4} --></p>
-<h4 class="wp-block-heading">最新文章</h4>
-<p><!-- /wp:heading --></p>
-<p><!-- wp:latest-posts {"postsToShow":3,"displayPostContent":true,"excerptLength":20,"displayPostDate":true,"style":{"spacing":{"padding":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}}} /--></p>
-<p><!-- wp:heading {"level":4} --></p>
-<h4 class="wp-block-heading">文章類別</h4>
-<p><!-- /wp:heading --></p>
-<p><!-- wp:categories {"showHierarchy":true,"showPostCounts":true} /--><br />
-</body></html></p>
+<header>
+    <h1>歡迎來到我的網站！</h1>
+    <p><strong>最新近況：</strong> {{ site.data.status.status }}</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="{{ '/_pages/2022-04-08-版權聲明.html' | relative_url }}">版權聲明</a></li>
+        <li><a href="{{ '/_pages/2022-04-09-文章.html' | relative_url }}">文章</a></li>
+        <li><a href="{{ '/_pages/2022-04-09-聯絡.html' | relative_url }}">聯絡</a></li>
+        <li><a href="{{ '/_pages/2022-12-31-特別番外.html' | relative_url }}">特別番外</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h2>置頂文章</h2>
+    {% assign sticky_post = site.posts | where: "sticky", true | first %}
+    {% if sticky_post %}
+        <article>
+            <h3><a href="{{ sticky_post.url }}">{{ sticky_post.title }}</a></h3>
+            <p>{{ sticky_post.excerpt }}</p>
+        </article>
+    {% else %}
+        <p>目前沒有置頂文章。</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>最新文章</h2>
+    <ul>
+        {% for post in site.posts limit:3 %}
+            <li>
+                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <p>{{ post.excerpt }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
