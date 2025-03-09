@@ -11,6 +11,17 @@ include:
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-archives
+
+jekyll-archives:
+  enabled: ["categories"]
+  layout: "category"
+  permalinks:
+    category: "/category/:name/"
 
 # 讓 Markdown 能正常解析
 markdown: kramdown
+
+paginate: 10
+paginate_path: "/文章/page:num/"
