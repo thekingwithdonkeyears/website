@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+
+    {% include navbar.html %}  <!-- 🔥 你的導航列 -->
+
+    <div class="container">
+        <main class="content">
+            <h1>{{ page.title }}</h1>
+            <p><strong>發佈日期：</strong> {{ page.date | date: "%Y-%m-%d" }}</p>
+            
+            <hr>
+            
+            {{ content }}
+
+            <hr>
+
+            <!-- 🔥 加入 Giscus 留言區 -->
+            {% include comments.html %}
+
+        </main>
+    </div>
+
+</body>
+</html>

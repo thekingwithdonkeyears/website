@@ -21,6 +21,20 @@ body {
     align-items: center;
 }
 
+/* 🏠 讓連結變得更有設計感 */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+/* 🖱️ 滑鼠懸停時的顏色 */
+a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
 /* 🖥️ 內容區域置中，限制最大寬度 */
 .container {
     max-width: 80%;
@@ -72,7 +86,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: "Noto Serif TC", "KaiTi", "Microsoft JhengHei", serif;
     color: var(--text-color);
-    text-align: center;
+    text-align: left;
 }
 
 /* 📄 文字區塊的邊界與排版 */

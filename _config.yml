@@ -23,5 +23,6 @@ jekyll-archives:
 # 讓 Markdown 能正常解析
 markdown: kramdown
 
-paginate: 10
+paginate: 10  # 每頁顯示 10 篇文章
 paginate_path: "/文章/page:num/"
+permalink: "/:title/"
