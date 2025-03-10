@@ -1,17 +1,17 @@
 /* 全域變數 */
 :root {
-    --bg-color: #181818; /* 柔和深灰色背景 */
-    --text-color: #EAEAEA; /* 溫和的白色 */
-    --link-color: #FFAA33; /* 柔和的琥珀色 */
-    --hover-color: #FF8800; /* 深琥珀 */
-    --border-color: #292929; /* 暗灰色邊框 */
-    --content-bg: #202020; /* 深色區塊背景 */
-    --button-bg: #333333; /* 深灰色按鈕 */
-    --button-hover-bg: #444444; /* 按鈕 hover 效果 */
-    --navbar-bg: #101010; /* 導航欄背景 */
-    --navbar-hover-bg: #222222; /* 導航 hover */
-    --category-bg: #252525; /* 類別標籤 */
-    --category-text: #EAEAEA; /* 類別文字 */
+    --bg-color: #181818; /* Soft dark gray */
+    --text-color: #EAEAEA; /* Warm white */
+    --link-color: #315885; /* Cool deep blue */
+    --hover-color: #357ABD; /* Slightly darker blue */
+    --border-color: #292929; /* Dark gray border */
+    --content-bg: #202020; /* Content background */
+    --button-bg: #333333; /* Button background */
+    --button-hover-bg: #444444; /* Button hover */
+    --navbar-bg: #101010; /* Navbar background */
+    --navbar-hover-bg: #222222; /* Navbar hover */
+    --category-bg: #252525; /* Category tags */
+    --category-text: #EAEAEA; /* Category text */
 }
 
 /* 全站樣式 */
@@ -115,18 +115,17 @@ h1, h2, h3, h4, h5, h6 {
 section h2 {
     font-size: 2rem;
     font-weight: bold;
-    color: #FFAA33;
+    color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 3px solid #FF8800;
+    border-bottom: 3px solid var(--border-color);
     padding-bottom: 5px;
     margin-bottom: 20px;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
+    transition: border-bottom 0.3s ease;
 }
 
 section h2:hover {
-    color: #FF8800;
-    border-bottom: 3px solid #FF6600;
+    border-bottom: 3px solid var(--hover-color);
 }
 
 /* 文字內容 */
