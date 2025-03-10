@@ -25,4 +25,4 @@ markdown: kramdown
 
 paginate: 10  # 每頁顯示 10 篇文章
 paginate_path: "/文章/page:num/"
-permalink: "/:title/"
+permalink: "/:slug/"

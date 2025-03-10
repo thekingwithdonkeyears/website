@@ -5,16 +5,20 @@ permalink: "/"
 ---
 
 <header>
-    <p><strong>最新近況：</strong> {{ site.data.status }}</p>
+    <h1 class="page-title">首頁</h1>
+    <hr class="separator">
 </header>
+
+<section>
+    <p><strong>作者近況：</strong> 網站建立中，歡迎告訴作者你想要的功能</p>
+</section>
 
 <section>
     <h2>置頂文章</h2>
     {% assign sticky_post = site.posts | where: "sticky", true | first %}
     {% if sticky_post %}
         <article>
-            <h3><a href="{{ sticky_post.url }}">{{ sticky_post.title }}</a></h3>
-            <p>{{ sticky_post.excerpt }}</p>
+            <h3><a href="{{ sticky_post.url | relative_url}}">{{ sticky_post.title }}</a></h3>
         </article>
     {% else %}
         <p>目前沒有置頂文章。</p>
@@ -26,7 +30,7 @@ permalink: "/"
     <ul>
         {% for post in site.posts limit:3 %}
             
-            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
             
         {% endfor %}
     </ul>

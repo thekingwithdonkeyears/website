@@ -1,41 +1,47 @@
-/* 🌙 全站 Dark Mode 配色（黑色 + 白色） */
+/* 全域變數 */
 :root {
-    --bg-color: #121212;  /* 深黑背景 */
-    --text-color: #f5f5f5;  /* 亮白文字 */
-    --link-color: #ffffff;  /* 連結為純白 */
-    --hover-color: #b3b3b3;  /* 滑鼠懸停時變淺灰 */
-    --border-color: #2a2a2a;  /* 邊界顏色 */
-    --content-bg: #1e1e1e;  /* 內容區塊背景 */
+    --bg-color: #181818; /* 柔和深灰色背景 */
+    --text-color: #EAEAEA; /* 溫和的白色 */
+    --link-color: #FFAA33; /* 柔和的琥珀色 */
+    --hover-color: #FF8800; /* 深琥珀 */
+    --border-color: #292929; /* 暗灰色邊框 */
+    --content-bg: #202020; /* 深色區塊背景 */
+    --button-bg: #333333; /* 深灰色按鈕 */
+    --button-hover-bg: #444444; /* 按鈕 hover 效果 */
+    --navbar-bg: #101010; /* 導航欄背景 */
+    --navbar-hover-bg: #222222; /* 導航 hover */
+    --category-bg: #252525; /* 類別標籤 */
+    --category-text: #EAEAEA; /* 類別文字 */
 }
 
-/* 🌍 整體網站風格 */
+/* 全站樣式 */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: "Noto Sans TC", "Songti SC", "Microsoft JhengHei", sans-serif;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
     line-height: 1.8;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 🏠 讓連結變得更有設計感 */
+/* 連結樣式 */
 a {
     color: var(--link-color);
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease, background 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-/* 🖱️ 滑鼠懸停時的顏色 */
 a:hover {
     color: var(--hover-color);
     text-decoration: underline;
 }
 
-/* 🖥️ 內容區域置中，限制最大寬度 */
+/* 主要內容區塊 */
 .container {
     max-width: 80%;
     width: 100%;
@@ -43,64 +49,102 @@ a:hover {
     background-color: var(--content-bg);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 
-/* 🏠 美觀的橫排導航列 */
+/* 導航欄 */
 .navbar {
     width: 100%;
-    background-color: #000;  /* 純黑導航欄 */
+    background-color: var(--navbar-bg);
     padding: 10px 0;
     text-align: center;
     border-bottom: 2px solid var(--border-color);
 }
 
 .navbar ul {
+    display: flex;
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    justify-content: center;
 }
 
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-name h1 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+/* 導航連結 */
 .navbar ul li {
-    display: inline-block;
     margin: 0 20px;
 }
 
 .navbar ul li a {
     color: var(--link-color);
-    text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
     padding: 10px 15px;
-    transition: color 0.3s ease, background 0.3s ease;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar ul li a:hover {
     color: var(--hover-color);
-    background-color: #333;
+    background-color: var(--navbar-hover-bg);
     border-radius: 5px;
-    padding: 10px 15px;
 }
 
-/* ✏️ 內容區塊的標題樣式 */
+/* 標題樣式 */
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Noto Serif TC", "KaiTi", "Microsoft JhengHei", serif;
+    font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
     color: var(--text-color);
     text-align: left;
+    transition: color 0.3s ease;
 }
 
-/* 📄 文字區塊的邊界與排版 */
+section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFAA33;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #FF8800;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+section h2:hover {
+    color: #FF8800;
+    border-bottom: 3px solid #FF6600;
+}
+
+/* 文字內容 */
 p {
     text-align: justify;
     padding: 10px 0;
 }
 
-/* 📝 讓列表更有層次感 */
+/* 列表 */
 ul {
     padding-left: 20px;
 }
 
-/* 🎨 讓分隔線更有質感 */
+li {
+    margin-bottom: 5px;
+}
+
+/* 分隔線 */
 hr {
     border: none;
     height: 2px;
@@ -108,30 +152,101 @@ hr {
     margin: 20px 0;
 }
 
-/* 🎀 美化按鈕 */
+/* 按鈕 */
 button {
-    background: var(--text-color);
-    color: var(--bg-color);
+    background: var(--button-bg);
+    color: var(--text-color);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background: var(--hover-color);
-    color: var(--bg-color);
+    background: var(--button-hover-bg);
+    transform: scale(1.05);
 }
 
-/* 📱 RWD 設定：小螢幕的排版 */
+/* 主題切換按鈕 */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 分類標籤 */
+.category-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+}
+  
+.category-item {
+    background: var(--category-bg);
+    color: var(--category-text);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+  
+.category-item:hover {
+    transform: scale(1.1);
+    background: var(--hover-color);
+    color: #101010;
+}
+
+/* 頁尾 */
+footer {
+    width: 100%;
+    background-color: var(--navbar-bg);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 響應式設計 */
 @media (max-width: 768px) {
     .container {
-        max-width: 90%;
+        max-width: 95%;
+        margin: 15px auto;
+        padding: 15px;
+    }
+
+    .navbar-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
     }
 
     .navbar ul li {
-        display: block;
-        margin: 10px 0;
+        margin: 5px 0;
+    }
+    
+    .site-name h1 {
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+    
+    .category-cloud {
+        padding: 10px;
     }
 }

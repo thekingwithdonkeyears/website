@@ -1,31 +1,79 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
 
-    {% include navbar.html %}  <!-- 🔥 你的導航列 -->
+  {% include navbar.html %}  <!-- 🔥 你的導航列 -->
 
-    <div class="container">
-        <main class="content">
-            <h1>{{ page.title }}</h1>
-            <p><strong>發佈日期：</strong> {{ page.date | date: "%Y-%m-%d" }}</p>
-            
-            <hr>
-            
-            {{ content }}
+  <div class="container">
+    <main class="content">
+      <h1>{{ page.title }}</h1>
+      <p><strong>發佈日期：</strong> {{ page.date | date: "%Y-%m-%d" }}</p>
+      
+      <!-- 取得 YAML 資料中的分類資訊 -->
+      {% assign current_category = page.categories | last %}
+      {% assign category_info = nil %}
+      {% for cat in site.data.categories %}
+        {% if cat.slug == current_category %}
+          {% assign category_info = cat %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if category_info %}
+        <div class="post-category">
+          <a href="{{ category_info.permalink | prepend: site.baseurl }}">
+            {{ category_info.title }}
+          </a>
+        </div>
+      {% endif %}
 
-            <hr>
+      <hr>
+      
+      {{ content }}
 
-            <!-- 🔥 加入 Giscus 留言區 -->
-            {% include comments.html %}
+      <!-- 上下篇連結開始 -->
+      {% comment %}
+        先收集同一分類的文章，再排序，並找出當前文章的位置
+      {% endcomment %}
+      {% assign related_posts = site.posts | where_exp:"post", "post.categories contains current_category" | sort: "date" %}
+      {% for post in related_posts %}
+        {% if post.url == page.url %}
+          {% assign index = forloop.index0 %}
+        {% endif %}
+      {% endfor %}
 
-        </main>
-    </div>
+      <nav class="post-navigation">
+        {% if index and index > 0 %}
+          {% assign prev_index = index | minus: 1 %}
+          {% assign prev_post = related_posts[prev_index] %}
+          <a class="prev-post" href="{{ prev_post.url | prepend: site.baseurl }}">
+            ← {{ prev_post.title }}
+          </a>
+        {% endif %}
 
+        {% assign last_index = related_posts.size | minus: 1 %}
+        {% if index and index < last_index %}
+          {% assign next_index = index | plus: 1 %}
+          {% assign next_post = related_posts[next_index] %}
+          <a class="next-post" href="{{ next_post.url | prepend: site.baseurl }}">
+            {{ next_post.title }} →
+          </a>
+        {% endif %}
+      </nav>
+      <!-- 上下篇連結結束 -->
+
+      <!-- 🔥 加入 Giscus 留言區 -->
+      {% include comments.html %}
+      
+    </main>
+  </div>
+  <footer>
+    <p>版權所有 &copy; {{ site.time | date: "%Y" }}</p>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!-- _includes/theme-switch.html -->
+<button id="theme-toggle">明亮模式</button>
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+
+  function updateButtonText() {
+    if (document.documentElement.classList.contains('light-mode')) {
+      themeToggle.textContent = '暗黑模式';
+    } else {
+      themeToggle.textContent = '明亮模式';
+    }
+  }
+
+  // 讀取 localStorage 中的主題設定
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.documentElement.classList.add('light-mode');
+  }
+  updateButtonText();
+
+  themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('light-mode');
+    if (document.documentElement.classList.contains('light-mode')) {
+      localStorage.setItem('theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+    }
+    updateButtonText();
+  });
+</script>
