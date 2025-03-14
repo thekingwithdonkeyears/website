@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 </head>
 <body>
 
@@ -66,7 +68,12 @@
         {% endif %}
       </nav>
       <!-- 上下篇連結結束 -->
-
+      {% if page.iframe1 and page.iframe2 %}
+      <div class="iframe-container">
+          <iframe src="{{ page.iframe1 }}"></iframe>
+          <iframe src="{{ page.iframe2 }}"></iframe>
+      </div>
+      {% endif %}
       <!-- 🔥 加入 Giscus 留言區 -->
       {% include comments.html %}
       

@@ -254,3 +254,22 @@ footer {
         padding: 10px;
     }
 }
+
+.iframe-container {
+    display: flex;
+    justify-content: center; /* 讓它們置中 */
+    gap: 20px; /* 設定間距 */
+    flex-wrap: wrap; /* 當視窗太小時自動換行 */
+}
+
+.iframe-container iframe {
+    width: 45%; /* 讓兩個 iframe 各佔 45% 的寬度 */
+    height: 500px; /* 設定統一高度 */
+    border: 1px solid #ddd; /* 添加細邊框 */
+}
+
+@media (max-width: 768px) {
+    .iframe-container iframe {
+        width: 100%; /* 在小螢幕時改為單欄顯示 */
+    }
+}
