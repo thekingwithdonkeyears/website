@@ -20,6 +20,7 @@ body {
     color: var(--text-color);
     font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
     line-height: 1.8;
+    
     margin: 0;
     padding: 0;
     display: flex;
@@ -43,14 +44,15 @@ a:hover {
 
 /* 主要內容區塊 */
 .container {
-    max-width: 80%;
+    max-width: 85%;
     width: 100%;
     margin: 30px auto;
     background-color: var(--content-bg);
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+    box-sizing: border-box; /* 確保 padding 不影響最大寬度 */
 }
 
 /* 導航欄 */
@@ -223,35 +225,59 @@ footer {
     flex-direction: column;
 }
 
-/* 響應式設計 */
+/* 手機版導覽列 - 隱藏選單，點擊才展開 */
 @media (max-width: 768px) {
-    .container {
-        max-width: 95%;
-        margin: 15px auto;
-        padding: 15px;
-    }
-
-    .navbar-container {
-        flex-direction: column;
-        padding: 10px;
+    .navbar {
+        position: relative;
     }
 
     .navbar ul {
-        flex-direction: column;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
+        background-color: var(--navbar-bg);
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar ul.active {
+        display: flex;
     }
 
     .navbar ul li {
-        margin: 5px 0;
+        margin: 10px 0;
     }
-    
-    .site-name h1 {
-        padding-left: 0;
-        margin-bottom: 10px;
-    }
-    
-    .category-cloud {
+
+    /* 漢堡選單按鈕 */
+    .hamburger {
+        display: block;
+        cursor: pointer;
         padding: 10px;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.5em;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 20px; /* 增加內距 */
+    }
+
+    p {
+        padding-left: 10px; /* 避免文字貼邊 */
+        padding-right: 10px;
     }
 }
 
@@ -269,7 +295,6 @@ footer {
 .iframe-container iframe {
     width: 100%;
     height: 650px; /* 設定較高的高度 */
-    border: none;
 }
 
 /* 桌機版 (兩個 iframe 各佔 50%) */
