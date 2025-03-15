@@ -225,6 +225,11 @@ footer {
     flex-direction: column;
 }
 
+/* Hide hamburger menu on larger screens */
+.hamburger {
+    display: none; /* Default: hidden */
+}
+
 /* 手機版導覽列 - 隱藏選單，點擊才展開 */
 @media (max-width: 768px) {
     .navbar {
