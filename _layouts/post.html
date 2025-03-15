@@ -70,12 +70,12 @@
       <!-- 上下篇連結結束 -->
       {% if page.iframe1 and page.iframe2 %}
       <div class="iframe-container">
-          <iframe src="{{ page.iframe1 }}"></iframe>
-          <iframe src="{{ page.iframe2 }}"></iframe>
+          <iframe src="{{ page.iframe1 }}" loading="lazy"></iframe>
+          <iframe src="{{ page.iframe2 }}" loading="lazy"></iframe>
       </div>
       {% endif %}
       <!-- 🔥 加入 Giscus 留言區 -->
-      {% include comments.html %}
+      <!--{% include comments.html %}-->
       
     </main>
   </div>

@@ -1,18 +1,86 @@
-<div id="giscus-comments">
-    <script src="https://giscus.app/client.js"
-        data-repo="thekingwithdonkeyears/website"
-        data-repo-id="R_kgDOOFlEZQ"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOOFlEZc4Cnvvy"
-        data-mapping="title"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="1"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-TW"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言系統</title>
+</head>
+<body>
+
+    <form id="comment-form">
+        <input type="text" id="name" placeholder="匿名" required>
+        <textarea id="message" placeholder="留下你的留言" required></textarea>
+        <button type="submit">送出</button>
+    </form>
+
+    <ul id="comments-list"></ul>
+
+    <script type="module">
+        // 🔥 導入 Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+        // 🔥 Firebase 設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyCOzHtZCeI-Qo6CsP3_qZ3jv4W0Y1g9aV8",
+            authDomain: "website-75947.firebaseapp.com",
+            databaseURL: "https://website-75947-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "website-75947",
+            storageBucket: "website-75947.firebasestorage.app",
+            messagingSenderId: "477717373872",
+            appId: "1:477717373872:web:4c472d4c171a9087606c75",
+            measurementId: "G-S446GKDP1P"
+        };
+
+        // 初始化 Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        // ✅ 防止 XSS：過濾使用者輸入
+        function escapeHTML(str) {
+            return str.replace(/&/g, "&amp;")
+                      .replace(/</g, "&lt;")
+                      .replace(/>/g, "&gt;")
+                      .replace(/"/g, "&quot;")
+                      .replace(/'/g, "&#039;");
+        }
+
+        // 📩 監聽表單提交
+        document.getElementById('comment-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let name = escapeHTML(document.getElementById('name').value.trim());
+            let message = escapeHTML(document.getElementById('message').value.trim());
+
+            if (name === "" || message === "") {
+                alert("請輸入名字和留言！");
+                return;
+            }
+
+            // 存入 Firebase Database
+            push(ref(database, 'comments'), {
+                name: name,
+                message: message,
+                timestamp: Date.now()
+            }).then(() => {
+                document.getElementById('name').value = "";
+                document.getElementById('message').value = "";
+            }).catch(error => {
+                alert("留言提交失敗，請檢查網路連線。");
+            });
+        });
+
+        // 🔄 即時監聽 Firebase 的留言更新
+        onChildAdded(ref(database, 'comments'), function (snapshot) {
+            let data = snapshot.val();
+            let listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>${data.name}:</strong> ${data.message}`;
+            document.getElementById('comments-list').appendChild(listItem);
+            listItem.scrollIntoView({ behavior: 'smooth' }); // 自動滾動到最新留言
+        });
+
     </script>
-</div>
+
+</body>
+</html>
