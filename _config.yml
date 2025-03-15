@@ -2,6 +2,7 @@ title: "國王和她的驢耳朵"
 description: "這是一個使用 Jekyll 建立的 GitHub Pages 網站"
 baseurl: ""  # 這個要對應你的 GitHub Pages 路徑
 url: "https://thekingwithdonkeyears.com"
+og_image: "https://thekingwithdonkeyears.com/assets/images/og-image.png"
 
 # 確保 Jekyll 讀取 _pages 內的 HTML 檔案
 include:
