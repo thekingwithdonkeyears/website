@@ -1,0 +1,29 @@
+title: "國王和她的驢耳朵"
+description: "這是一個使用 Jekyll 建立的 GitHub Pages 網站"
+baseurl: ""  # 這個要對應你的 GitHub Pages 路徑
+url: "https://thekingwithdonkeyears.com"
+og_image: "https://thekingwithdonkeyears.com/assets/images/og-image.png"
+
+# 確保 Jekyll 讀取 _pages 內的 HTML 檔案
+include:
+  - _pages
+
+# 設定 Jekyll Plugins（如果有需要）
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-archives
+
+jekyll-archives:
+  enabled: ["categories"]
+  layout: "category"
+  permalinks:
+    category: "/category/:name/"
+
+# 讓 Markdown 能正常解析
+markdown: kramdown
+
+paginate: 10  # 每頁顯示 10 篇文章
+paginate_path: "/文章/page:num/"
+permalink: "/:slug/"

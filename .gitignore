@@ -1,0 +1,11 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.bundle/
+node_modules/
+*.py
+.vscode/
+.DS_Store
+*.log
+*.lock
+_feedbacks/

@@ -1,0 +1,38 @@
+---
+layout: default
+title: "文章"
+permalink: "/文章/"
+---
+
+<header>
+    <h1 class="page-title">文章</h1>
+    <hr class="separator">
+</header>
+
+<!-- 分類列表 -->
+{% assign sorted_categories = site.data.categories | sort: "order" %}
+<section>
+  <h2>所有分類</h2>
+  <ul>
+    {% for category in sorted_categories %}
+      <li>
+        <a href="{{ category.permalink | relative_url }}">
+          {{ category.title }} ({{ site.categories[category.title] | size }})
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<!-- 文章列表 -->
+<section>
+    <h2>最新文章</h2>
+    <ul class="post-list">
+        {% for post in site.posts limit:10 %}
+            <li>
+                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+

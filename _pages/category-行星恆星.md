@@ -1,0 +1,12 @@
+---
+description: 顯示分類「行星。恆星」下的所有文章。
+layout: category
+permalink: /category/行星恆星/
+title: 行星。恆星
+---
+
+<h1>分類：行星。恆星</h1>
+
+{% for post in site.categories[page.title] %}
+  <p><a href="{{ post.url | relative_url }}">{{ post.title }}</a> ({{ post.date | date: "%Y-%m-%d" }})</p>
+{% endfor %}

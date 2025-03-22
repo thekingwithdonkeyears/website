@@ -1,0 +1,10 @@
+<ul>
+    {% for item in include.items %}
+      <li>
+        <a href="/{{ item.slug }}/">{{ item.label }}</a>
+        {% if item.children %}
+          {% include category_list.html items=item.children %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>

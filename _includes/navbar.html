@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- 漢堡選單按鈕 -->
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+    <div class="navbar-menu">
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">國王和她的驢耳朵</a></li>
+        <li><a href="{{ '/特別番外' | relative_url }}">特別番外</a></li>
+        <li><a href="{{ '/文章' | relative_url }}">文章</a></li>
+        <li><a href="{{ '/聯絡' | relative_url }}">聯絡</a></li>
+        <li><a href="{{ '/版權聲明' | relative_url }}">版權聲明</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function toggleMenu() {
+    document.querySelector('.navbar-menu ul').classList.toggle('active');
+  }
+</script>

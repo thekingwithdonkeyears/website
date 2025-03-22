@@ -1,0 +1,307 @@
+/*==============================
+    全域變數
+===============================*/
+:root {
+    --bg-color: #181818; /* Soft dark gray */
+    --text-color: #EAEAEA; /* Warm white */
+    --link-color: #315885; /* Cool deep blue */
+    --hover-color: #357ABD; /* Slightly darker blue */
+    --border-color: #292929; /* Dark gray border */
+    --content-bg: #202020; /* Content background */
+    --button-bg: #333333; /* Button background */
+    --button-hover-bg: #444444; /* Button hover */
+    --navbar-bg: #101010; /* Navbar background */
+    --navbar-hover-bg: #222222; /* Navbar hover */
+    --category-bg: #252525; /* Category tags */
+    --category-text: #EAEAEA; /* Category text */
+}
+
+/*==============================
+    全站基本樣式
+===============================*/
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 連結樣式 */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+/*==============================
+    文字與版型
+===============================*/
+/* 文字內容 */
+p {
+    text-align: justify;
+    padding: 10px 0;
+}
+
+/* 標題樣式 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+    color: var(--text-color);
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+/* 章節標題 */
+section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid var(--border-color);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    transition: border-bottom 0.3s ease;
+}
+section h2:hover {
+    border-bottom: 3px solid var(--hover-color);
+}
+
+/* 列表樣式 */
+ul {
+    padding-left: 20px;
+}
+li {
+    margin-bottom: 5px;
+}
+
+/* 分隔線 */
+hr {
+    border: none;
+    height: 2px;
+    background-color: var(--border-color);
+    margin: 20px 0;
+}
+
+/*==============================
+    主要容器與導覽列
+===============================*/
+/* 主要內容區塊 */
+.container {
+    max-width: 85%;
+    width: 100%;
+    margin: 50px auto;
+    background-color: var(--content-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* 導覽列 */
+.navbar {
+    width: 100%;
+    background-color: var(--navbar-bg);
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+}
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.navbar ul li {
+    margin: 0 20px;
+}
+.navbar ul li a {
+    color: var(--link-color);
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.navbar ul li a:hover {
+    color: var(--hover-color);
+    background-color: var(--navbar-hover-bg);
+}
+.site-name h1 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+/* 漢堡選單 (僅限手機) */
+.hamburger {
+    display: none;
+}
+
+/*==============================
+    按鈕與其他元件
+===============================*/
+/* 按鈕 */
+button {
+    background: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+button:hover {
+    background: var(--button-hover-bg);
+    transform: scale(1.05);
+}
+
+/* 主題切換按鈕 */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 分類標籤 */
+.category-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+}
+.category-item {
+    background: var(--category-bg);
+    color: var(--category-text);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.category-item:hover {
+    transform: scale(1.1);
+    background: var(--hover-color);
+    color: #101010;
+}
+
+/*==============================
+    頁尾
+===============================*/
+footer {
+    width: 100%;
+    background-color: var(--navbar-bg);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*==============================
+    響應式調整
+===============================*/
+/* 手機版導覽列與內容調整 */
+@media (max-width: 768px) {
+    .navbar {
+        position: relative;
+    }
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.5em;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+    .navbar ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--navbar-bg);
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar ul.active {
+        display: flex;
+    }
+    .navbar ul li {
+        margin: 10px 0;
+    }
+    .container {
+        max-width: 90%;
+        margin: 30px auto;
+        padding: 25px;
+    }
+    p {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/*==============================
+    iframe 區塊
+===============================*/
+.iframe-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 100%;
+    width: 100%;
+    justify-content: center;
+}
+.iframe-container iframe {
+    width: 100%;
+    height: 650px;
+}
+@media (min-width: 768px) {
+    .iframe-container {
+        justify-content: space-between;
+    }
+    .iframe-container iframe {
+        width: calc(50% - 5px);
+        height: 700px;
+    }
+}

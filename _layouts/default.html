@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <meta property="og:image" content="{{ site.og_image }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-39VGSFW87R"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39VGSFW87R');
+    </script>
+</head>
+<body>
+
+    {% include navbar.html %}  <!-- 這裡插入導航欄 -->
+    <div class="container">
+        <main class="content">
+            {{ content }}
+            <!--{% include comments.html %}-->
+        </main>
+    </div>
+    <footer>
+        <p>&copy; {{ site.time | date: "%Y" }} 國王和她的驢耳朵. All rights reserved.</p>
+    </footer>
+</body>
+</html>
