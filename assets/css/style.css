@@ -310,24 +310,30 @@ footer {
     Cusdis 留言區 樣式優化
 ===============================*/
 
+.comment-wrapper {
+  max-width: 100%;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
 #cusdis_thread {
-  margin-top: 40px;
-  padding: 25px;
   background-color: var(--content-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  padding: 30px;
   overflow: visible !important;
 }
 
-/* 強制 iframe 占滿區域並自動撐高，防止捲軸出現 */
+/* 強制展開 iframe 留言區，不被壓縮、不產生捲軸 */
 iframe[src*="cusdis.com"] {
   display: block;
   width: 100% !important;
   height: 100% !important;
-  min-height: 800px;
-  overflow: hidden !important;
+  min-height: 850px;
   border: none;
-  max-width: 100%;
+  overflow: hidden !important;
   background-color: transparent;
 }
