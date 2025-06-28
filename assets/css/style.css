@@ -2,18 +2,19 @@
     全域變數
 ===============================*/
 :root {
-    --bg-color: #181818; /* Soft dark gray */
-    --text-color: #EAEAEA; /* Warm white */
-    --link-color: #315885; /* Cool deep blue */
-    --hover-color: #357ABD; /* Slightly darker blue */
-    --border-color: #292929; /* Dark gray border */
-    --content-bg: #202020; /* Content background */
-    --button-bg: #333333; /* Button background */
-    --button-hover-bg: #444444; /* Button hover */
-    --navbar-bg: #101010; /* Navbar background */
-    --navbar-hover-bg: #222222; /* Navbar hover */
-    --category-bg: #252525; /* Category tags */
-    --category-text: #EAEAEA; /* Category text */
+    --bg-color: #181818;               /* Soft dark gray */
+    --text-color: #EAEAEA;             /* Warm white */
+    --link-color: #315885;             /* Cool deep blue */
+    --hover-color: #357ABD;            /* Slightly darker blue */
+    --border-color: #292929;           /* Dark gray border */
+    --content-bg: #202020;             /* Content background */
+    --button-bg: #333333;              /* Button background */
+    --button-hover-bg: #444444;        /* Button hover */
+    --navbar-bg: #101010;              /* Navbar background */
+    --navbar-hover-bg: #222222;        /* Navbar hover */
+    --category-bg: #252525;            /* Category tags */
+    --category-text: #EAEAEA;          /* Category text */
+    --site-container-max-width: 85%;   /* 主要內容最大寬度 */
 }
 
 /*==============================
@@ -32,7 +33,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 連結樣式 */
 a {
     color: var(--link-color);
     text-decoration: none;
@@ -44,16 +44,11 @@ a:hover {
     text-decoration: underline;
 }
 
-/*==============================
-    文字與版型
-===============================*/
-/* 文字內容 */
 p {
     text-align: justify;
     padding: 10px 0;
 }
 
-/* 標題樣式 */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
     color: var(--text-color);
@@ -61,7 +56,6 @@ h1, h2, h3, h4, h5, h6 {
     transition: color 0.3s ease;
 }
 
-/* 章節標題 */
 section h2 {
     font-size: 2rem;
     font-weight: bold;
@@ -77,7 +71,6 @@ section h2:hover {
     border-bottom: 3px solid var(--hover-color);
 }
 
-/* 列表樣式 */
 ul {
     padding-left: 20px;
 }
@@ -85,7 +78,6 @@ li {
     margin-bottom: 5px;
 }
 
-/* 分隔線 */
 hr {
     border: none;
     height: 2px;
@@ -96,9 +88,8 @@ hr {
 /*==============================
     主要容器與導覽列
 ===============================*/
-/* 主要內容區塊 */
 .container {
-    max-width: 85%;
+    max-width: var(--site-container-max-width);
     width: 100%;
     margin: 50px auto;
     background-color: var(--content-bg);
@@ -109,7 +100,6 @@ hr {
     box-sizing: border-box;
 }
 
-/* 導覽列 */
 .navbar {
     width: 100%;
     background-color: var(--navbar-bg);
@@ -152,8 +142,6 @@ hr {
     margin: 0;
     color: var(--text-color);
 }
-
-/* 漢堡選單 (僅限手機) */
 .hamburger {
     display: none;
 }
@@ -161,7 +149,6 @@ hr {
 /*==============================
     按鈕與其他元件
 ===============================*/
-/* 按鈕 */
 button {
     background: var(--button-bg);
     color: var(--text-color);
@@ -177,7 +164,6 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* 主題切換按鈕 */
 .theme-toggle {
     position: fixed;
     bottom: 20px;
@@ -193,7 +179,6 @@ button:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* 分類標籤 */
 .category-cloud {
     display: flex;
     flex-wrap: wrap;
@@ -215,26 +200,8 @@ button:hover {
 }
 
 /*==============================
-    頁尾
-===============================*/
-footer {
-    width: 100%;
-    background-color: var(--navbar-bg);
-    color: var(--text-color);
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-/*==============================
     響應式調整
 ===============================*/
-/* 手機版導覽列與內容調整 */
 @media (max-width: 768px) {
     .navbar {
         position: relative;
@@ -309,33 +276,47 @@ footer {
 /*==============================
     Cusdis 留言區 樣式優化
 ===============================*/
-
-/* 1. 跟上面 container 同寬 */
+/* 跟 .container 同寬 */
 .comment-wrapper {
-  width: 100%;
-  max-width: var(--main-container-max-width); /* e.g. 800px、1000px… */
-  margin: 40px auto;
-  padding: 0 20px;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: var(--site-container-max-width);
+    margin: 40px auto;
+    padding: 0 30px;
+    box-sizing: border-box;
 }
 
-/* 2. 調整 Cusdis 容器，讓 overflow visible，push iframe 自動展開 */
 #cusdis_thread {
-  width: 100%;
-  padding: 30px;
-  background-color: var(--content-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  overflow: visible; /* 讓內部 iframe 有機會自動撐開高度 */
+    width: 100%;
+    padding: 30px;
+    background-color: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    overflow: visible;
 }
 
-/* 3. 讓 iframe 寬度 100%，高度自動撐開 */
 iframe[src*="cusdis.com"] {
-  display: block;
-  width: 100% !important;
-  height: auto !important;    /* 自動依內容撐開 */
-  min-height: 600px;          /* 可調：設定合理的最小高度 */
-  border: none;
-  overflow: visible !important;
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 600px;
+    border: none;
+    overflow: visible !important;
+}
+
+/*==============================
+    頁尾
+===============================*/
+footer {
+    width: 100%;
+    background-color: var(--navbar-bg);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
