@@ -276,32 +276,28 @@ button:hover {
 /*==============================
     Cusdis 留言區 樣式優化
 ===============================*/
-/* 跟 .container 同寬 */
+/* 留言區外層：只要加個間隔就好 */
 .comment-wrapper {
-    width: 100%;
-    max-width: var(--site-container-max-width);
-    margin: 40px auto;
-    padding: 0 30px;
-    box-sizing: border-box;
+  margin-top: 40px;
+  box-sizing: border-box;
 }
 
+/* Cusdis 容器 */
 #cusdis_thread {
-    width: 100%;
-    padding: 30px;
-    background-color: var(--content-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    overflow: visible;
+  width: 100%;
+  background-color: var(--content-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  /* 不要 overflow: hidden/visible，讓 iframe 自由調整 */
 }
 
-iframe[src*="cusdis.com"] {
-    display: block;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 600px;
-    border: none;
-    overflow: visible !important;
+/* 只強制寬度，拿掉任何 height 覆寫 */
+#cusdis_thread iframe {
+  display: block;
+  width: 100% !important;
+  border: none !important;
+  /* 不設定 height，給 script 完全控制 */
 }
 
 /*==============================
