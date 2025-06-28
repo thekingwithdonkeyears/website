@@ -2,24 +2,30 @@
     全域變數
 ===============================*/
 :root {
-    --bg-color: #181818;               /* Soft dark gray */
-    --text-color: #EAEAEA;             /* Warm white */
-    --link-color: #315885;             /* Cool deep blue */
-    --hover-color: #357ABD;            /* Slightly darker blue */
-    --border-color: #292929;           /* Dark gray border */
-    --content-bg: #202020;             /* Content background */
-    --button-bg: #333333;              /* Button background */
-    --button-hover-bg: #444444;        /* Button hover */
-    --navbar-bg: #101010;              /* Navbar background */
-    --navbar-hover-bg: #222222;        /* Navbar hover */
-    --category-bg: #252525;            /* Category tags */
-    --category-text: #EAEAEA;          /* Category text */
-    --site-container-max-width: 85%;   /* 主要內容最大寬度 */
+    --bg-color: #181818;               
+    --text-color: #EAEAEA;             
+    --link-color: #315885;             
+    --hover-color: #357ABD;            
+    --border-color: #292929;           
+    --content-bg: #202020;             
+    --button-bg: #333333;              
+    --button-hover-bg: #444444;        
+    --navbar-bg: #101010;              
+    --navbar-hover-bg: #222222;        
+    --category-bg: #252525;            
+    --category-text: #EAEAEA;          
+    --site-container-max-width: 85%;   /* 文章主區最大寬度 */
 }
 
 /*==============================
     全站基本樣式
 ===============================*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -95,9 +101,8 @@ hr {
     background-color: var(--content-bg);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: background-color 0.3s ease;
-    box-sizing: border-box;
 }
 
 .navbar {
@@ -111,9 +116,9 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 .navbar ul {
     display: flex;
@@ -164,21 +169,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 100;
-    padding: 10px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
+/* 分類標籤 */
 .category-cloud {
     display: flex;
     flex-wrap: wrap;
@@ -228,7 +219,7 @@ button:hover {
         flex-direction: column;
         text-align: center;
         padding: 15px 0;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     .navbar ul.active {
         display: flex;
@@ -242,62 +233,34 @@ button:hover {
         padding: 25px;
     }
     p {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding: 0 15px;
     }
 }
 
 /*==============================
-    iframe 區塊
+    Cusdis 留言區
 ===============================*/
-.iframe-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-    max-width: 100%;
-    width: 100%;
-    justify-content: center;
-}
-.iframe-container iframe {
-    width: 100%;
-    height: 650px;
-}
-@media (min-width: 768px) {
-    .iframe-container {
-        justify-content: space-between;
-    }
-    .iframe-container iframe {
-        width: calc(50% - 5px);
-        height: 700px;
-    }
-}
-
-/*==============================
-    Cusdis 留言區 樣式優化
-===============================*/
-/* 留言區外層：只要加個間隔就好 */
+/* 只保留同寬＆自動撐開，不強制高度 */
 .comment-wrapper {
-  margin-top: 40px;
-  box-sizing: border-box;
+    margin-top: 40px;
 }
 
-/* Cusdis 容器 */
 #cusdis_thread {
-  width: 100%;
-  background-color: var(--content-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  /* 不要 overflow: hidden/visible，讓 iframe 自由調整 */
+    width: 100%;
+    background-color: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    /* 不設定 overflow 或固定 height，讓 JS 自行控制 */
 }
 
-/* 只強制寬度，拿掉任何 height 覆寫 */
+/* 給 iframe 100% 寬，不干涉高度 */
 #cusdis_thread iframe {
-  display: block;
-  width: 100% !important;
-  border: none !important;
-  /* 不設定 height，給 script 完全控制 */
+    display: block !important;
+    width: 100% !important;
+    border: none !important;
+    height: auto !important;
+    min-height: 0 !important;
 }
 
 /*==============================
