@@ -81,8 +81,16 @@
           <iframe src="{{ page.iframe2 }}" loading="lazy"></iframe>
       </div>
       {% endif %}
-      <!-- 🔥 加入 Giscus 留言區 -->
-      <!--{% include comments.html %}-->
+     <!-- 🗨️ Cusdis 留言區開始 -->
+      <div id="cusdis_thread"
+           data-host="https://cusdis.com"
+           data-app-id="你的-Cusdis-App-ID"
+           data-page-id="{{ page.url }}"
+           data-page-url="{{ site.url }}{{ page.url }}"
+           data-page-title="{{ page.title }}">
+      </div>
+      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+      <!-- 🗨️ Cusdis 留言區結束 -->
       
     </main>
   </div>
