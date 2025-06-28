@@ -247,7 +247,7 @@ button:hover {
 
 #cusdis_thread {
     width: 100%;
-    min-height: 1600px;
+    min-height: 1600px !important;
     background-color: var(--content-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -255,10 +255,10 @@ button:hover {
     /* 不設定 overflow 或固定 height，讓 JS 自行控制 */
 }
 
-#cusdis_thread iframe {
-    display: block;
-    width: 100%;
-    border: none;
+iframe[src*="cusdis.com"] {
+  width: 100% !important;            /* 保持滿版同寬 */
+  min-height: 1600px !important;     /* 跟 #cusdis_thread 一致 */
+  height: auto !important;           /* 保留自動延展功能 */
 }
 /*==============================
     頁尾
