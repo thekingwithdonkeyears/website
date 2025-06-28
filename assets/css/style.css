@@ -305,3 +305,29 @@ footer {
         height: 700px;
     }
 }
+
+/*==============================
+    Cusdis 留言區 樣式優化
+===============================*/
+
+#cusdis_thread {
+  margin-top: 40px;
+  padding: 25px;
+  background-color: var(--content-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  overflow: visible !important;
+}
+
+/* 強制 iframe 占滿區域並自動撐高，防止捲軸出現 */
+iframe[src*="cusdis.com"] {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 800px;
+  overflow: hidden !important;
+  border: none;
+  max-width: 100%;
+  background-color: transparent;
+}
