@@ -310,30 +310,32 @@ footer {
     Cusdis 留言區 樣式優化
 ===============================*/
 
+/* 1. 跟上面 container 同寬 */
 .comment-wrapper {
-  max-width: 100%;
   width: 100%;
+  max-width: var(--main-container-max-width); /* e.g. 800px、1000px… */
   margin: 40px auto;
   padding: 0 20px;
   box-sizing: border-box;
 }
 
+/* 2. 調整 Cusdis 容器，讓 overflow visible，push iframe 自動展開 */
 #cusdis_thread {
+  width: 100%;
+  padding: 30px;
   background-color: var(--content-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  padding: 30px;
-  overflow: visible !important;
+  overflow: visible; /* 讓內部 iframe 有機會自動撐開高度 */
 }
 
-/* 強制展開 iframe 留言區，不被壓縮、不產生捲軸 */
+/* 3. 讓 iframe 寬度 100%，高度自動撐開 */
 iframe[src*="cusdis.com"] {
   display: block;
   width: 100% !important;
-  height: 100% !important;
-  min-height: 850px;
+  height: auto !important;    /* 自動依內容撐開 */
+  min-height: 600px;          /* 可調：設定合理的最小高度 */
   border: none;
-  overflow: hidden !important;
-  background-color: transparent;
+  overflow: visible !important;
 }
