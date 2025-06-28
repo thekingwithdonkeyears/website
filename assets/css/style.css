@@ -247,6 +247,7 @@ button:hover {
 
 #cusdis_thread {
     width: 100%;
+    min-height: 800px;
     background-color: var(--content-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -254,15 +255,12 @@ button:hover {
     /* 不設定 overflow 或固定 height，讓 JS 自行控制 */
 }
 
-/* 給 iframe 100% 寬，不干涉高度 */
 #cusdis_thread iframe {
-    display: block !important;
-    width: 100% !important;
-    border: none !important;
-    height: auto !important;
-    min-height: 0 !important;
+    display: block;
+    width: 100%;
+    border: none;
+    height: 800px !important;
 }
-
 /*==============================
     頁尾
 ===============================*/
