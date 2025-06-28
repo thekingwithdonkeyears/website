@@ -76,21 +76,23 @@
       </nav>
       <!-- 上下篇連結結束 -->
       
-     <!-- 🗨️ Cusdis 留言區開始 -->
-      <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="f159c841-cfd2-4ec9-8f09-969c7e3b68b1"
-      data-page-id="{{ page.url }}"
-     data-page-url="{{ site.url }}{{ page.url }}"
-     data-page-title="{{ page.title }}"
-     data-theme="dark">
-      </div>
-      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
-      <!-- 🗨️ Cusdis 留言區結束 -->
+     
       
     </main>
   </div>
+  <!-- 🗨️ Cusdis 留言區開始 -->
+  <div class="comment-wrapper">
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="f159c841-cfd2-4ec9-8f09-969c7e3b68b1"
+      data-page-id="{{ page.url }}"
+      data-page-url="{{ site.url }}{{ page.url }}"
+      data-page-title="{{ page.title }}"
+      data-theme="dark">
+    </div>
+  </div>
+  <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+  <!-- 🗨️ Cusdis 留言區結束 -->
   <footer>
     <p>版權所有 &copy; {{ site.time | date: "%Y" }}</p>
   </footer>
