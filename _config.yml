@@ -28,8 +28,4 @@ paginate: 10  # 每頁顯示 10 篇文章
 paginate_path: "/文章/page:num/"
 permalink: "/:slug/"
 
-analytics:
-  provider: "google-gtag"
-  google:
-    tracking_id: "G-39VGSFW8R7"
-    anonymize_ip: true  #（可選，是否啟用 IP 匿名）
+google_analytics: G-39VGSFW8R7
