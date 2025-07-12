@@ -5,9 +5,10 @@ categories:
   - 氣象觀察站
 tags:
   - Saida
-date: 2025-07-13 00:00:00
+date: 2025-07-12 T10:30:00
 published: true
-permalink: /Weather-Station-13/
+iframe1: 
+iframe2:
 ---
 
 細碎的雨滴打在人行道上，從地面彈起的水花濺在湊崎的鞋上。金多賢注意到後將她往屋簷下的空間拉近，又順手拿出包包裡常備的手帕，跟她交換手上被雨水打濕垂頭喪氣的香水百合。
