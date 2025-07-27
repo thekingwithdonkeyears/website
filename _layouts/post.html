@@ -51,7 +51,7 @@
       {% endfor %}
 
       <nav class="post-navigation">
-        <p>留言要作者手動審核後才會發佈，如果沒即時出現是正常現象，請耐心等候</p>
+        
         {% if index and index > 0 %}
           {% assign prev_index = index | minus: 1 %}
           {% assign prev_post = related_posts[prev_index] %}
@@ -69,6 +69,7 @@
           </a>
         {% endif %}
       </nav>
+      <p>留言要作者手動審核後才會發佈，如果沒即時出現是正常現象，請耐心等候</p>
       <!-- 上下篇連結結束 -->
       
      
