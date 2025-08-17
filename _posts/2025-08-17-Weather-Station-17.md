@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【定mo】氣象觀察站 17. 「妳猜這是什麼意思？」
+title: 【定mo】氣象觀察站 17. 「妳都不知道我是什麼樣的心情」
 categories:
   - 氣象觀察站
 tags:
