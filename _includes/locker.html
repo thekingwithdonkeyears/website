@@ -1,0 +1,56 @@
+{% assign enabled = page.lock | default: false %}
+{% if enabled %}
+<div class="lock-card">
+<h2>🔒 Password Required</h2>
+<form id="gate-{{ page.url | slugify }}">
+<input type="password" id="pw-{{ page.url | slugify }}" placeholder="Enter password" required>
+<button type="submit">Unlock</button>
+<span class="lock-msg" style="margin-left:.5rem;color:#c00;"></span>
+</form>
+<div id="slot-{{ page.url | slugify }}" style="display:none;"></div>
+<template id="tpl-{{ page.url | slugify }}">
+{{ content }}
+</template>
+</div>
+<script>
+(function(){
+// ★ Demo 密碼（可改成讀取 window.LOCK_PW 或 site.data 之類；仍是前端！）
+const PLAIN_PASSWORD = "1020";
+
+const id = "{{ page.url | slugify }}";
+const form = document.getElementById("gate-" + id);
+const input = document.getElementById("pw-" + id);
+const slot = document.getElementById("slot-" + id);
+const tpl = document.getElementById("tpl-" + id);
+const msg = form.querySelector(".lock-msg");
+
+form.addEventListener("submit", function(e){
+e.preventDefault();
+if (input.value === PLAIN_PASSWORD) {
+slot.innerHTML = "";
+slot.appendChild(tpl.content.cloneNode(true));
+slot.style.display = "block";
+form.style.display = "none";
+} else {
+msg.textContent = "Wrong password";
+input.select();
+}
+});
+
+// 小防爬：避免被索引
+var m = document.querySelector('meta[name="robots"]');
+if (!m) {
+m = document.createElement('meta');
+m.name = 'robots';
+m.content = 'noindex,nofollow';
+document.head.appendChild(m);
+}
+})();
+</script>
+<style>
+.lock-card{border:1px solid #ddd;border-radius:12px;padding:1rem}
+.lock-card input, .lock-card button{font:inherit;padding:.5rem .75rem}
+</style>
+{% else %}
+{{ content }}
+{% endif %}
