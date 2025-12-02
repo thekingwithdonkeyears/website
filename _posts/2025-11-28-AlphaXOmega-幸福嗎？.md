@@ -2,6 +2,8 @@
 layout: post
 title: 【satzu】 幸福嗎？
 categories:
+  - TWICE
+  - 同人 
   - Omega作家 X Alpha 編輯
 tags:
   - satzu

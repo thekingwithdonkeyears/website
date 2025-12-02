@@ -2,7 +2,9 @@
 layout: post
 title: 氣象觀察站 26. 「原來這點小傷就能被你關心嗎？」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-11-09 T10:30:00

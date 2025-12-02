@@ -2,7 +2,9 @@
 layout: post
 title: 氣象觀察站 22. 「你最近缺錢嗎？」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-10-04 T10:30:00

@@ -2,7 +2,9 @@
 layout: post
 title: 氣象觀察站 24. 「是去哪裡來著？」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-10-25 T10:30:00

@@ -2,7 +2,9 @@
 layout: post
 title: 【定mo】氣象觀察站 19. 「她剛剛的目光絕對和我身旁的小幽靈對到眼。」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-08-31 T10:30:00

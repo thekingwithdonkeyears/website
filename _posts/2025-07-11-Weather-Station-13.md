@@ -2,7 +2,9 @@
 layout: post
 title: 【Saida】氣象觀察站 13. 「沒聽到就算了。以後還會經常說的。」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-07-12 T10:30:00

@@ -2,7 +2,9 @@
 layout: post
 title: 氣象觀察站 21. 「相信我，我很快回來。」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-09-14 T11:30:00

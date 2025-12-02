@@ -1,8 +1,10 @@
 ---
 layout: post
-title: 氣象觀察站 22. 「女友是這麼重要的嗎？」
+title: 氣象觀察站 23. 「女友是這麼重要的嗎？」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-10-18 T10:30:00

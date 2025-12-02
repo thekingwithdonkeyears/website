@@ -2,7 +2,9 @@
 layout: post
 title: 氣象觀察站 25. 「這真是最低俗的場景。」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-11-01 T10:30:00

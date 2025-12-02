@@ -2,7 +2,9 @@
 layout: post
 title: 【玉米】氣象觀察站 14. 「今天適合開心果的，對吧？」
 categories:
-  - 氣象觀察站
+- TWICE
+- 同人 
+- 氣象觀察站
 tags:
   - Saida
 date: 2025-07-20 T10:30:00
