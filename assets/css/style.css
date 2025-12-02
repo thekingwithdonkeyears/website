@@ -37,6 +37,7 @@ body {
     flex-direction: column;
     align-items: center;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding-top: 60px;
 }
 
 a {
@@ -111,6 +112,10 @@ hr {
     padding: 10px 0;
     text-align: center;
     border-bottom: 2px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }
 .navbar-container {
     display: flex;
@@ -194,9 +199,15 @@ button:hover {
     響應式調整
 ===============================*/
 @media (max-width: 768px) {
+
+    /* ⭐ 保留 fixed 位置，不再覆寫成 relative */
     .navbar {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
     }
+
     .hamburger {
         display: block;
         cursor: pointer;
@@ -205,15 +216,21 @@ button:hover {
         border: none;
         color: var(--text-color);
         font-size: 1.5em;
+
+        /* 固定定位後，這個位置才能正確 */
         position: absolute;
         top: 10px;
         right: 20px;
     }
+
     .navbar ul {
         display: none;
         position: absolute;
+
+        /* 固定後選單仍會在下方展開 */
         top: 100%;
         left: 0;
+
         width: 100%;
         background-color: var(--navbar-bg);
         flex-direction: column;
@@ -221,17 +238,21 @@ button:hover {
         padding: 15px 0;
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
+
     .navbar ul.active {
         display: flex;
     }
+
     .navbar ul li {
         margin: 10px 0;
     }
+
     .container {
         max-width: 90%;
-        margin: 30px auto;
+        margin: 80px auto 30px; /* ⭐ 增加上方距離避免被 navbar 壓住 */
         padding: 25px;
     }
+
     p {
         padding: 0 15px;
     }
