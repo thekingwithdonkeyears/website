@@ -9,3 +9,9 @@ node_modules/
 *.log
 *.lock
 _feedbacks/
+
+# macOS
+.AppleDouble
+.LSOverride
+._*
+.Trashes

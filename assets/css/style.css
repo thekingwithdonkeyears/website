@@ -1,20 +1,45 @@
 /*==============================
     全域變數
 ===============================*/
+/* Light Mode - Stronger Specificity */
+html.light-mode {
+    --bg-color: #F8F9FA !important;
+    --text-color: #212529 !important;
+    --link-color: #0D6EFD !important;
+    --hover-color: #0A58CA !important;
+    --border-color: #DEE2E6 !important;
+    --content-bg: #FFFFFF !important;
+    --button-bg: #E9ECEF !important;
+    --button-hover-bg: #DDE0E3 !important;
+    --navbar-bg: #FFFFFF !important;
+    --navbar-hover-bg: #F8F9FA !important;
+    --category-bg: #F1F3F5 !important;
+    --category-text: #212529 !important;
+
+    --toc-bg: #F8F9FA !important;
+    --toc-border: #DEE2E6 !important;
+}
+
+/* Base Variables */
 :root {
-    --bg-color: #181818;               
-    --text-color: #EAEAEA;             
-    --link-color: #315885;             
-    --hover-color: #357ABD;            
-    --border-color: #292929;           
-    --content-bg: #202020;             
-    --button-bg: #333333;              
-    --button-hover-bg: #444444;        
-    --navbar-bg: #101010;              
-    --navbar-hover-bg: #222222;        
-    --category-bg: #252525;            
-    --category-text: #EAEAEA;          
-    --site-container-max-width: 85%;   /* 文章主區最大寬度 */
+    --bg-color: #181818;
+    --text-color: #EAEAEA;
+    --link-color: #315885;
+    --hover-color: #357ABD;
+    --border-color: #292929;
+    --content-bg: #202020;
+    --button-bg: #333333;
+    --button-hover-bg: #444444;
+    --navbar-bg: #101010;
+    --navbar-hover-bg: #222222;
+    --category-bg: #252525;
+    --category-text: #EAEAEA;
+    --site-container-max-width: 85%;
+    /* 文章主區最大寬度 */
+
+    /* Table of Contents */
+    --toc-bg: #202020;
+    --toc-border: #292929;
 }
 
 /*==============================
@@ -46,6 +71,7 @@ a {
     font-weight: bold;
     transition: color 0.3s ease;
 }
+
 a:hover {
     color: var(--hover-color);
     text-decoration: underline;
@@ -56,7 +82,12 @@ p {
     padding: 10px 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
     color: var(--text-color);
     text-align: left;
@@ -74,6 +105,7 @@ section h2 {
     margin-bottom: 20px;
     transition: border-bottom 0.3s ease;
 }
+
 section h2:hover {
     border-bottom: 3px solid var(--hover-color);
 }
@@ -81,6 +113,7 @@ section h2:hover {
 ul {
     padding-left: 20px;
 }
+
 li {
     margin-bottom: 5px;
 }
@@ -102,7 +135,7 @@ hr {
     background-color: var(--content-bg);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
 
@@ -117,6 +150,7 @@ hr {
     left: 0;
     z-index: 999;
 }
+
 .navbar-container {
     display: flex;
     justify-content: center;
@@ -125,6 +159,7 @@ hr {
     margin: 0 auto;
     padding: 0 20px;
 }
+
 .navbar ul {
     display: flex;
     justify-content: center;
@@ -133,9 +168,12 @@ hr {
     padding: 0;
     width: 100%;
 }
+
 .navbar ul li {
     margin: 0 20px;
 }
+
+/* Base Navbar Link Styles */
 .navbar ul li a {
     color: var(--link-color);
     font-size: 1.2em;
@@ -143,15 +181,85 @@ hr {
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
+    /* Ensure full area is clickable */
 }
+
+/* --- Dropdown Menu Styles --- */
+.navbar ul li {
+    position: static;
+    /* Anchor for dropdown - CHANGED to static so dropdown spans full navbar width */
+}
+
+.dropdown-menu {
+    /* display: none; REPLACED with visibility for transition */
+    display: grid;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    /* Full width */
+    width: 100%;
+    transform: none;
+    /* Remove centering transform */
+
+    background-color: var(--navbar-bg);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    z-index: 1000;
+    padding: 30px;
+
+    /* Center grid content effectively via constraints or just letting it flow */
+    /* Grid Layout - Auto fit for mega menu feel */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+
+    /* Optional: Limit content width inside the full-width bar */
+    padding-left: max(30px, calc(50% - 600px));
+    padding-right: max(30px, calc(50% - 600px));
+}
+
+/* Show dropdown on hover */
+.navbar ul li:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown-menu li {
+    margin: 0;
+    width: auto;
+    /* Reset width */
+}
+
+.dropdown-menu li a {
+    font-size: 1rem;
+    /* Smaller font for sub-items */
+    padding: 10px 20px;
+    white-space: nowrap;
+    color: var(--text-color);
+    /* Default text color in dropdown */
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--navbar-hover-bg);
+    color: var(--hover-color);
+}
+
 .navbar ul li a:hover {
     color: var(--hover-color);
     background-color: var(--navbar-hover-bg);
 }
+
 .site-name h1 {
     margin: 0;
     color: var(--text-color);
 }
+
 .hamburger {
     display: none;
 }
@@ -169,6 +277,7 @@ button {
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 button:hover {
     background: var(--button-hover-bg);
     transform: scale(1.05);
@@ -182,6 +291,7 @@ button:hover {
     justify-content: center;
     padding: 20px;
 }
+
 .category-item {
     background: var(--category-bg);
     color: var(--category-text);
@@ -189,10 +299,18 @@ button:hover {
     border-radius: 5px;
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
+
 .category-item:hover {
     transform: scale(1.1);
     background: var(--hover-color);
     color: #101010;
+    text-decoration: none;
+}
+
+.category-item .count {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-left: 5px;
 }
 
 /*==============================
@@ -236,7 +354,7 @@ button:hover {
         flex-direction: column;
         text-align: center;
         padding: 15px 0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     .navbar ul.active {
@@ -249,12 +367,69 @@ button:hover {
 
     .container {
         max-width: 90%;
-        margin: 80px auto 30px; /* ⭐ 增加上方距離避免被 navbar 壓住 */
+        margin: 80px auto 30px;
+        /* ⭐ 增加上方距離避免被 navbar 壓住 */
         padding: 25px;
     }
 
     p {
         padding: 0 15px;
+    }
+
+    /* Fix Mobile Dropdown */
+    .navbar ul li {
+        width: 100%;
+        /* Full width items */
+        margin: 0;
+    }
+
+    .navbar ul li a {
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+        display: block;
+    }
+
+    /* Dropdown in mobile: Static position to push content down */
+    /* Dropdown in mobile: Static position to push content down */
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background-color: var(--navbar-hover-bg);
+        /* Slightly distinct background */
+        text-align: center;
+        width: 100%;
+        display: none;
+        /* Still hidden by default */
+
+        /* Reset visibility/opacity for mobile since we use display:none/block here */
+        visibility: visible;
+        opacity: 1;
+
+        /* Reset Grid for Mobile */
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+    }
+
+    .navbar ul li:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Ensure dropdown links are visible in mobile */
+    .dropdown-menu li a {
+        padding: 10px;
+        font-size: 0.95em;
+        border-bottom: none;
+        /* Remove border for sub-items */
+    }
+
+    /* Toggle Button visibility */
+    #theme-toggle {
+        width: 80%;
+        margin: 10px auto;
+        display: block;
     }
 }
 
@@ -268,22 +443,141 @@ button:hover {
 
 /* （1）外層框線、同寬 */
 #cusdis_thread {
-  width: 100%;
-  background-color: var(--content-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  margin-top: 40px; /* 跟文章區隔開 */
+    width: 100%;
+    background-color: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    margin-top: 40px;
+    /* 跟文章區隔開 */
 }
 
 /* （2）直接針對 iframe 本身，用 !important 強制覆寫 */
 #cusdis_thread iframe {
-  display: block !important;
-  width: 100% !important;
-  min-height: 1600px !important; /* 一打開就是 1600px，也能再往下自動延展 */
-  height: auto !important;
-  border: none !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 1600px !important;
+    /* 一打開就是 1600px，也能再往下自動延展 */
+    height: auto !important;
+    border: none !important;
 }
+
+/*==============================
+    New Components (Reading Time, Breadcrumbs, TOC)
+===============================*/
+
+/* 1. Breadcrumbs */
+.breadcrumbs {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.breadcrumbs a {
+    color: var(--link-color);
+}
+
+.breadcrumbs span {
+    margin: 0 5px;
+}
+
+/* 2. Reading Time */
+.reading-time {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+/* 3. Table of Contents */
+.toc-container {
+    background-color: var(--toc-bg);
+    border: 1px solid var(--toc-border);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.toc-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    color: var(--text-color);
+}
+
+#toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#toc ul li {
+    margin-bottom: 5px;
+}
+
+#toc a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-size: 0.95rem;
+}
+
+#toc a:hover {
+    text-decoration: underline;
+    color: var(--hover-color);
+}
+
+/* TOC Indentation for H3 calls */
+#toc ul ul {
+    padding-left: 20px;
+}
+
+/* Post Navigation (Prev/Next) Enhancements */
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.post-navigation a {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: var(--content-bg);
+    color: var(--text-color);
+}
+
+.post-navigation a:hover {
+    border-color: var(--hover-color);
+    color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.prev-post::before {
+    content: "上一篇：";
+    display: block;
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-bottom: 5px;
+}
+
+.next-post::before {
+    content: "下一篇：";
+    display: block;
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-bottom: 5px;
+}
+
 /*==============================
     頁尾
 ===============================*/
