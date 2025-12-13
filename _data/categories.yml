@@ -83,3 +83,8 @@
   slug: 行星恆星
   title: 行星。恆星
   order: 17
+- description: 顯示分類「YouNameIt」下的所有文章。
+  permalink: /category/YouNameIt/
+  slug: YouNameIt
+  title: YouNameIt
+  order: 18

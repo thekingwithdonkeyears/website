@@ -19,16 +19,13 @@
     <div class="sidebar-widget tag-cloud-widget">
         <h3 class="widget-title">標籤雲</h3>
         <div class="tag-cloud">
-            {% capture site_tags %}
-            {% for tag in site.tags %}
-            {{ tag | first }}
-            {% endfor %}
-            {% endcapture %}
-            {% assign sorted_tags = site_tags | split:' ' | sort %}
+            {% assign sorted_tags = site.tags | sort %}
 
-            {% for tag in sorted_tags %}
-            <a href="{{ '/tag/' | append: tag | relative_url }}" class="tag-pill">
-                {{ tag }} <span class="count">({{ site.tags[tag].size }})</span>
+            {% for tag_pair in sorted_tags %}
+            {% assign tag_name = tag_pair[0] %}
+            {% assign tag_posts = tag_pair[1] %}
+            <a href="{{ '/tag/' | append: tag_name | relative_url }}" class="tag-pill">
+                {{ tag_name }} <span class="count">({{ tag_posts.size }})</span>
             </a>
             {% endfor %}
         </div>
