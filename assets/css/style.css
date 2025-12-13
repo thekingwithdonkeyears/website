@@ -34,7 +34,7 @@ html.light-mode {
     --navbar-hover-bg: #222222;
     --category-bg: #252525;
     --category-text: #EAEAEA;
-    --site-container-max-width: 85%;
+    --site-container-max-width: 1200px;
     /* 文章主區最大寬度 */
 
     /* Table of Contents */
@@ -593,4 +593,261 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+/*==============================
+    Sidebar & Two-Column Layout
+===============================*/
+.layout-flex {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    /* For Sticky Sidebar */
+}
+
+.post-content {
+    flex: 3;
+    max-width: 750px;
+    /* Golden reading width */
+    min-width: 0;
+    /* Prevent flex overflow */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    flex: 1;
+    max-width: 350px;
+    min-width: 300px;
+    position: sticky;
+    top: 100px;
+    /* Sticky effect when scrolling */
+}
+
+.sidebar-widget {
+    background-color: var(--navbar-bg);
+    /* Use Navbar bg for slight contrast or just container bg */
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.widget-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+/* Popular Posts Widget */
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-list li {
+    margin-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+}
+
+.post-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.post-list a {
+    display: block;
+    font-weight: normal;
+}
+
+.post-list .post-title {
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.post-list a:hover .post-title {
+    color: var(--hover-color);
+}
+
+.post-list .post-date {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+/* Tag Cloud Widget */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-pill {
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: normal;
+    border: 1px solid transparent;
+}
+
+.tag-pill:hover {
+    background-color: var(--hover-color);
+    color: #fff;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.tag-pill .count {
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-left: 3px;
+}
+
+/* Responsive Sidebar adjustments */
+@media (max-width: 992px) {
+    .layout-flex {
+        flex-direction: column;
+    }
+
+    .post-content {
+        max-width: 100%;
+        /* Full width on mobile/tablet */
+    }
+
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
+        position: static;
+        margin-top: 40px;
+    }
+
+    .tag-cloud {
+        justify-content: center;
+    }
+}
+
+/*==============================
+    Name Switcher Replaced Text
+===============================*/
+.replaced-name {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+html.light-mode .replaced-name {
+    background-color: #e2e6ea;
+    color: #212529;
+}
+
+/*==============================
+    Name Switcher Component
+===============================*/
+.name-switcher-container {
+    background-color: var(--navbar-bg);
+    /* Use navbar or category bg for subtle contrast */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.name-switcher-summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--link-color);
+    /* Make it look interactive */
+    transition: color 0.3s ease;
+}
+
+.name-switcher-summary:hover {
+    color: var(--hover-color);
+}
+
+.name-switcher-desc {
+    font-size: 0.9em;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.name-switcher-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.name-switcher-group {
+    flex: 1;
+    min-width: 140px;
+}
+
+.name-switcher-label {
+    display: block;
+    font-size: 0.85em;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.name-switcher-input {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+.name-switcher-input:focus {
+    outline: none;
+    border-color: var(--link-color);
+}
+
+.name-switcher-input[readonly] {
+    background-color: var(--button-bg);
+    /* Use a darker/different bg to indicate disabled/readonly */
+    opacity: 0.7;
+    cursor: default;
+}
+
+.name-switcher-arrow {
+    flex: 0 0 auto;
+    padding-top: 20px;
+    /* Align with input */
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.name-switcher-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.name-switcher-btn {
+    /* Inherits from global button style but customized if needed */
+    margin-left: 10px;
 }

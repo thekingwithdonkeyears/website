@@ -1,0 +1,91 @@
+<div class="name-switcher-container">
+    <details>
+        <summary class="name-switcher-summary">🛠️ 角色名字替換 (點擊展開)</summary>
+        <div style="margin-top: 10px;">
+            <p class="name-switcher-desc">輸入新名字來替換文章中的主角名字。</p>
+
+            <!-- Logic to determine default names based on tags -->
+            {% assign default_name_1 = "{p1}" %}
+            {% assign default_name_2 = "{p2}" %}
+
+
+            <div class="name-switcher-row">
+                <div class="name-switcher-group">
+                    <label class="name-switcher-label">原名 1</label>
+                    <input type="text" id="orig-name-1" value="{{ default_name_1 }}" placeholder="例如：湊崎"
+                        class="name-switcher-input" readonly>
+                </div>
+                <div class="name-switcher-arrow">➡️</div>
+                <div class="name-switcher-group">
+                    <label class="name-switcher-label">新名 1</label>
+                    <input type="text" id="new-name-1" placeholder="主角1的名字" class="name-switcher-input">
+                </div>
+            </div>
+
+            <div class="name-switcher-row">
+                <div class="name-switcher-group">
+                    <label class="name-switcher-label">原名 2</label>
+                    <input type="text" id="orig-name-2" value="{{ default_name_2 }}" placeholder="例如：周子瑜"
+                        class="name-switcher-input" readonly>
+                </div>
+                <div class="name-switcher-arrow">➡️</div>
+                <div class="name-switcher-group">
+                    <label class="name-switcher-label">新名 2</label>
+                    <input type="text" id="new-name-2" placeholder="主角2的名字" class="name-switcher-input">
+                </div>
+            </div>
+
+            <div class="name-switcher-actions">
+                <button id="btn-replace-names" class="name-switcher-btn">開始替換</button>
+                <button id="btn-reset-names" class="name-switcher-btn">復原</button>
+            </div>
+        </div>
+    </details>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentArea = document.getElementById('story-content');
+        if (!contentArea) return;
+
+        // Store original content to allow reset
+        let originalHTML = contentArea.innerHTML;
+
+        document.getElementById('btn-replace-names').addEventListener('click', function () {
+            const orig1 = document.getElementById('orig-name-1').value.trim();
+            const new1 = document.getElementById('new-name-1').value.trim();
+            const orig2 = document.getElementById('orig-name-2').value.trim();
+            const new2 = document.getElementById('new-name-2').value.trim();
+
+            if ((!orig1 || !new1) && (!orig2 || !new2)) {
+                alert('請至少輸入一組完整的名字！');
+                return;
+            }
+
+            // Restore original first to avoid double replacement issues if clicked multiple times
+            contentArea.innerHTML = originalHTML;
+
+            let html = contentArea.innerHTML;
+
+            if (orig1 && new1) {
+                // Create regex with global flag
+                const regex1 = new RegExp(orig1, 'g');
+                html = html.replace(regex1, `<span class="replaced-name">${new1}</span>`);
+            }
+
+            if (orig2 && new2) {
+                const regex2 = new RegExp(orig2, 'g');
+                html = html.replace(regex2, `<span class="replaced-name">${new2}</span>`);
+            }
+
+            contentArea.innerHTML = html;
+
+            // Close the details panel to let user read
+            document.querySelector('.name-switcher-container details').removeAttribute('open');
+        });
+
+        document.getElementById('btn-reset-names').addEventListener('click', function () {
+            contentArea.innerHTML = originalHTML;
+        });
+    });
+</script>

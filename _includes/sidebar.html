@@ -1,0 +1,36 @@
+<div class="sidebar-content">
+    <!-- 1. Popular Posts Section -->
+    <div class="sidebar-widget popular-posts">
+        <h3 class="widget-title">熱門文章</h3>
+        <ul class="post-list">
+            {% assign popular_posts = site.posts | where: "popular", true | limit: 5 %}
+            {% if popular_posts.size < 1 %} {% assign popular_posts=site.posts | limit: 5 %} {% endif %} {% for post in
+                popular_posts %} <li>
+                <a href="{{ post.url | relative_url }}">
+                    <div class="post-title">{{ post.title }}</div>
+                    <div class="post-date">{{ post.date | date: "%Y-%m-%d" }}</div>
+                </a>
+                </li>
+                {% endfor %}
+        </ul>
+    </div>
+
+    <!-- 2. Tag Cloud Section -->
+    <div class="sidebar-widget tag-cloud-widget">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="tag-cloud">
+            {% capture site_tags %}
+            {% for tag in site.tags %}
+            {{ tag | first }}
+            {% endfor %}
+            {% endcapture %}
+            {% assign sorted_tags = site_tags | split:' ' | sort %}
+
+            {% for tag in sorted_tags %}
+            <a href="{{ '/tag/' | append: tag | relative_url }}" class="tag-pill">
+                {{ tag }} <span class="count">({{ site.tags[tag].size }})</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
