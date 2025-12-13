@@ -45,13 +45,22 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const contentArea = document.getElementById('story-content');
-        if (!contentArea) return;
-
-        // Store original content to allow reset
-        let originalHTML = contentArea.innerHTML;
-
         document.getElementById('btn-replace-names').addEventListener('click', function () {
+            const contentArea = document.getElementById('story-content');
+
+            if (!contentArea) {
+                alert('請先解鎖文章內容，才能使用改名功能！');
+                return;
+            }
+
+            // Store original content to allow reset if not already stored
+            // Note: We need a way to store the *original* unlocked content. 
+            // Since contentArea is dynamic, we can store it on the element itself or a variable if we assume single instance.
+            if (!contentArea.dataset.originalHtml) {
+                contentArea.dataset.originalHtml = contentArea.innerHTML;
+            }
+
+            // ... rest of logic uses contentArea ...
             const orig1 = document.getElementById('orig-name-1').value.trim();
             const new1 = document.getElementById('new-name-1').value.trim();
             const orig2 = document.getElementById('orig-name-2').value.trim();
@@ -62,8 +71,8 @@
                 return;
             }
 
-            // Restore original first to avoid double replacement issues if clicked multiple times
-            contentArea.innerHTML = originalHTML;
+            // Restore original first
+            contentArea.innerHTML = contentArea.dataset.originalHtml;
 
             let html = contentArea.innerHTML;
 
@@ -85,7 +94,10 @@
         });
 
         document.getElementById('btn-reset-names').addEventListener('click', function () {
-            contentArea.innerHTML = originalHTML;
+            const contentArea = document.getElementById('story-content');
+            if (contentArea && contentArea.dataset.originalHtml) {
+                contentArea.innerHTML = contentArea.dataset.originalHtml;
+            }
         });
     });
 </script>
