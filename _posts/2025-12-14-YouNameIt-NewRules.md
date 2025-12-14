@@ -8,6 +8,7 @@ tags:
   - YouNameIt
 date: 2025-12-13 T10:30:00
 password: '1020'
+lock: true
 published: true
 iframe1:
 iframe2:

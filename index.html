@@ -10,18 +10,18 @@ permalink: "/"
 </header>
 
 <section>
-    <p><strong>作者近況：</strong><br>每週日晚上11:00更新氣象觀察站<br>不確定有沒有讀者在乎，不過本質工程師的作者為網站加了兩個功能更新<br>一個是固定上方的導覽列，另外一個是手機上的漢堡選單可以按空白處關閉</p>
+    <p><strong>作者近況：</strong><br>每週日晚上11:00更新氣象觀察站<br>偶爾會寫一些特別的短篇</p>
 </section>
 
 <section>
     <h2>置頂文章</h2>
     {% assign sticky_post = site.posts | where: "sticky", true | first %}
     {% if sticky_post %}
-        <article>
-            <h3><a href="{{ sticky_post.url | relative_url}}">{{ sticky_post.title }}</a></h3>
-        </article>
+    <article>
+        <h3><a href="{{ sticky_post.url | relative_url}}">{{ sticky_post.title }}</a></h3>
+    </article>
     {% else %}
-        <p>目前沒有置頂文章。</p>
+    <p>目前沒有置頂文章。</p>
     {% endif %}
 </section>
 
@@ -29,9 +29,9 @@ permalink: "/"
     <h2>最新文章</h2>
     <ul>
         {% for post in site.posts limit:3 %}
-            
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-            
+
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+
         {% endfor %}
     </ul>
 </section>
