@@ -117,6 +117,6 @@ iframe2:
 
 作者這週看了兩部非常喜歡的電影，分別是阿凡達3和大濛，推薦給大家。
 
-話說作者目標在兩篇內完結，時間拖的有點久怕大家忘記前面在幹麻，可以參考這個[測驗](https://notebooklm.google.com/notebook/5209df30-cfe2-4c75-a730-245c64cbc9e3?artifactId=7894e0f8-91ad-416a-9d76-5c02212d6f67) ，不過裡面有一個小bug。
+話說作者目標在兩篇內完結，時間拖的有點久怕大家忘記前面在幹麻，可以參考這個[測驗](https://notebooklm.google.com/notebook/5209df30-cfe2-4c75-a730-245c64cbc9e3?artifactId=7894e0f8-91ad-416a-9d76-5c02212d6f67) 和[投影片](https://notebooklm.google.com/notebook/5209df30-cfe2-4c75-a730-245c64cbc9e3?artifactId=54164520-25cc-4b36-b892-4745af4b9141)，不過裡面有一個小bug。
 
 老樣子，感謝各位來看文，日常祝福各位讀者還有孩子們都順利健康平安快樂，希望你們今天也很幸福，還有冬至快樂！
