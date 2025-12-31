@@ -851,3 +851,38 @@ html.light-mode .replaced-name {
     /* Inherits from global button style but customized if needed */
     margin-left: 10px;
 }
+/*==============================
+    Code Block Styling (Added for Fix)
+==============================*/
+pre {
+    background-color: var(--category-bg);
+    color: var(--text-color);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    white-space: pre-wrap;       /* Wrap text to prevent overflow */
+    word-wrap: break-word;       /* Legacy support */
+    overflow-wrap: break-word;   /* Standard */
+    margin: 20px 0;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    font-size: 0.95em;
+    line-height: 1.6;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
+}
+
+code {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    background-color: var(--button-bg); /* Inline code bg */
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Override inline style for code blocks */
+pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+    color: inherit;
+}
