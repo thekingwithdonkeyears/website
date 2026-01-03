@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    {% include google-analytics.html %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <meta property="og:image" content="{{ site.og_image }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4087964762824382"
+        crossorigin="anonymous"></script>
+    <style>
+        /* Role Play Specific Styles */
+        .role-inputs {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+        }
+
+        .role-input-group {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .role-input-group label {
+            display: inline-block;
+            width: 80px;
+            font-weight: bold;
+        }
+
+        .role-input-group input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-right: 10px;
+            width: 120px;
+        }
+
+        .role-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+
+        /* Ensure buttons from dinky or similar are styled if used, attempting to inherit or use standard */
+        .buttons {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include navbar.html %} <!-- Insert Navbar -->
+
+    <div class="container">
+        <main class="content">
+
+            <section id="main-section" style="display: none;">
+                <div id="role-inputs-container" class="role-inputs"></div>
+
+                <div id="content-area">
+                    {{ content }}
+                </div>
+            </section>
+
+            <section id="password-section" style="display: none;">
+                <div class="role-inputs">
+                    <h3>Password Required</h3>
+                    <p>Please enter the password to view this content.</p>
+                    <div class="role-input-group">
+                        <input type="password" id="password-input" placeholder="Enter password" style="width: 200px;">
+                        <button id="password-submit" class="buttons">Submit</button>
+                    </div>
+                    <p id="password-error" style="color: red; display: none;">Incorrect password.</p>
+                    {% if page.hint %}
+                    <p style="margin-top: 10px; font-size: 0.9em;">
+                        <a href="{{ page.hint }}" target="_blank">Get a hint / Find password</a>
+                    </p>
+                    {% endif %}
+                </div>
+            </section>
+
+            <!--{% include comments.html %}-->
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; {{ site.time | date: "%Y" }} 國王和她的驢耳朵. All rights reserved.</p>
+    </footer>
+
+    <script>
+        (function () {
+            const roleCount = {{ page.num_roles | default: page.roles | default: 0
+        }};
+        const pagePassword = "{{ page.password }}";
+
+        const mainSection = document.getElementById('main-section');
+        const passwordSection = document.getElementById('password-section');
+        const passwordInput = document.getElementById('password-input');
+        const passwordSubmit = document.getElementById('password-submit');
+        const passwordError = document.getElementById('password-error');
+        const container = document.getElementById('role-inputs-container');
+        const contentArea = document.getElementById('content-area');
+
+        // Defaults from front matter
+        const defaultRoles = {};
+        {% if page.num_roles %}
+        {% for i in (1..page.num_roles) %}
+        defaultRoles[{{ i }}] = { };
+        {% assign key_last = "default_p" | append: i | append: "_last" %}
+        {% assign key_first = "default_p" | append: i | append: "_first" %}
+
+        {% if page[key_last] %}
+        defaultRoles[{{ i }}].last = "{{ page[key_last] }}";
+        {% endif %}
+
+        {% if page[key_first] %}
+        defaultRoles[{{ i }}].first = "{{ page[key_first] }}";
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        // Helper: Check Password
+        function checkPassword() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pwdParam = urlParams.get('pwd');
+            const directParam = window.location.search.substring(1);
+
+            if (!pagePassword) return true;
+
+            if (pwdParam === pagePassword) return true;
+            if (directParam === pagePassword) return true;
+
+            if (sessionStorage.getItem('unlocked_' + window.location.pathname) === 'true') return true;
+
+            return false;
+        }
+
+        function unlockContent() {
+            mainSection.style.display = 'block';
+            passwordSection.style.display = 'none';
+            sessionStorage.setItem('unlocked_' + window.location.pathname, 'true');
+            initRoles();
+        }
+
+        function showLock() {
+            mainSection.style.display = 'none';
+            passwordSection.style.display = 'block';
+        }
+
+        // --- Role Logic ---
+        const originalContent = contentArea.innerHTML;
+
+        const getSavedLast = (index) => localStorage.getItem('role_' + index + '_last') || (defaultRoles[index] ? defaultRoles[index].last : '') || '';
+        const getSavedFirst = (index) => localStorage.getItem('role_' + index + '_first') || (defaultRoles[index] ? defaultRoles[index].first : '') || '';
+
+        const setSavedLast = (index, value) => localStorage.setItem('role_' + index + '_last', value);
+        const setSavedFirst = (index, value) => localStorage.setItem('role_' + index + '_first', value);
+
+        function updateContent() {
+            let newContent = originalContent;
+            for (let i = 1; i <= roleCount; i++) {
+                const inputLast = document.getElementById('role-input-last-' + i);
+                const inputFirst = document.getElementById('role-input-first-' + i);
+
+                const lastName = inputLast ? inputLast.value.trim() : getSavedLast(i);
+                const firstName = inputFirst ? inputFirst.value.trim() : getSavedFirst(i);
+                const fullName = lastName + firstName;
+
+                // Sub replacements
+                // {pX_last}
+                if (lastName) {
+                    newContent = newContent.replace(new RegExp('{p' + i + '_last}', 'g'), lastName);
+                }
+                // {pX_first}
+                if (firstName) {
+                    newContent = newContent.replace(new RegExp('{p' + i + '_first}', 'g'), firstName);
+                }
+                // {pX} - Full Name (Concat)
+                if (fullName) {
+                    newContent = newContent.replace(new RegExp('{p' + i + '}', 'g'), fullName);
+                }
+            }
+            contentArea.innerHTML = newContent;
+        }
+
+        function initRoles() {
+            if (roleCount <= 0) return;
+
+            container.innerHTML = '';
+
+            if (roleCount > 0) {
+                const header = document.createElement('h3');
+                header.textContent = '角色設定';
+                container.appendChild(header);
+            }
+
+            for (let i = 1; i <= roleCount; i++) {
+                const wrapper = document.createElement('div');
+
+                const header = document.createElement('div');
+                header.className = 'role-header';
+                header.textContent = 'Role ' + i;
+                wrapper.appendChild(header);
+
+                const group = document.createElement('div');
+                group.className = 'role-input-group';
+
+                // Last Name
+                const labelLast = document.createElement('label');
+                labelLast.textContent = '姓:';
+                labelLast.htmlFor = 'role-input-last-' + i;
+
+                const inputLast = document.createElement('input');
+                inputLast.type = 'text';
+                inputLast.id = 'role-input-last-' + i;
+                inputLast.placeholder = '姓';
+                inputLast.value = getSavedLast(i);
+                inputLast.addEventListener('input', (e) => {
+                    setSavedLast(i, e.target.value);
+                    updateContent();
+                });
+
+                // First Name
+                const labelFirst = document.createElement('label');
+                labelFirst.textContent = '名:';
+                labelFirst.htmlFor = 'role-input-first-' + i;
+
+                const inputFirst = document.createElement('input');
+                inputFirst.type = 'text';
+                inputFirst.id = 'role-input-first-' + i;
+                inputFirst.placeholder = '名';
+                inputFirst.value = getSavedFirst(i);
+                inputFirst.addEventListener('input', (e) => {
+                    setSavedFirst(i, e.target.value);
+                    updateContent();
+                });
+
+                group.appendChild(labelLast);
+                group.appendChild(inputLast);
+
+                group.appendChild(labelFirst);
+                group.appendChild(inputFirst);
+
+                wrapper.appendChild(group);
+                container.appendChild(wrapper);
+            }
+            updateContent();
+        }
+
+        // --- Init ---
+        if (checkPassword()) {
+            unlockContent();
+        } else {
+            showLock();
+        }
+
+        const submitBtn = document.getElementById('password-submit');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                if (passwordInput.value === pagePassword) {
+                    unlockContent();
+                } else {
+                    passwordError.style.display = 'block';
+                }
+            });
+        }
+
+        if (passwordInput) {
+            passwordInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') document.getElementById('password-submit').click();
+            });
+        }
+
+      }) ();
+    </script>
+</body>
+
+</html>
