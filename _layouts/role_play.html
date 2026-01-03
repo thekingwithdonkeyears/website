@@ -15,40 +15,60 @@
         .role-inputs {
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.05);
+            background: var(--toc-bg);
+            /* Use theme variable */
+            border: 1px solid var(--border-color);
             border-radius: 5px;
+            color: var(--text-color);
         }
 
         .role-input-group {
             margin-bottom: 10px;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            /* Allow wrapping on small screens */
+            gap: 10px;
         }
 
         .role-input-group label {
             display: inline-block;
-            width: 80px;
             font-weight: bold;
+            color: var(--text-color);
         }
 
         .role-input-group input {
-            padding: 5px;
-            border: 1px solid #ccc;
+            padding: 8px;
+            border: 1px solid var(--border-color);
             border-radius: 3px;
-            margin-right: 10px;
-            width: 120px;
+            background-color: var(--content-bg);
+            color: var(--text-color);
+            width: 150px;
+            /* Slightly wider */
         }
 
         .role-header {
             font-weight: bold;
-            margin-bottom: 5px;
-            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-top: 15px;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
         }
 
-        /* Ensure buttons from dinky or similar are styled if used, attempting to inherit or use standard */
+        .preview-text {
+            background-color: var(--category-bg);
+            padding: 15px;
+            border-left: 5px solid var(--link-color);
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--text-color);
+        }
+
+        /* Use global button styles, just add margin if needed */
         .buttons {
-            padding: 5px 10px;
-            cursor: pointer;
+            /* Inherits global button styles, just ensuring specific overrides if any */
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -59,6 +79,13 @@
 
     <div class="container">
         <main class="content">
+
+
+            {% if page.preview %}
+            <div class="preview-text">
+                {{ page.preview | markdownify }}
+            </div>
+            {% endif %}
 
             <section id="main-section" style="display: none;">
                 <div id="role-inputs-container" class="role-inputs"></div>
