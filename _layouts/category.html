@@ -3,14 +3,23 @@ layout: default
 ---
 <h1>分類：{{ page.title }}</h1>
 
+<!-- AdSense: Top -->
+<div class="google-ad-top" style="margin: 20px 0;">
+  {% include google-ad-post-top.html %}
+</div>
 
 <ul>
   {% for post in site.categories[page.title] %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      <small>（{{ post.date | date: "%Y-%m-%d" }}）</small>
-    </li>
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <small>（{{ post.date | date: "%Y-%m-%d" }}）</small>
+  </li>
   {% endfor %}
 </ul>
+
+<!-- AdSense: Bottom -->
+<div class="google-ad-bottom" style="margin: 20px 0;">
+  {% include google-ad-post-bottom.html %}
+</div>
 
 ＝

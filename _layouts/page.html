@@ -18,7 +18,17 @@
     </header>
 
     <main>
+        <!-- AdSense: Top -->
+        <div class="google-ad-top" style="margin: 20px 0;">
+            {% include google-ad-post-top.html %}
+        </div>
+
         {{ content }}
+
+        <!-- AdSense: Bottom -->
+        <div class="google-ad-bottom" style="margin: 20px 0;">
+            {% include google-ad-post-bottom.html %}
+        </div>
     </main>
 
     <footer>

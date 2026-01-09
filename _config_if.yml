@@ -1,0 +1,18 @@
+# Configuration for "If" Subdomain
+# This file overrides settings in _config.yml
+
+url: "https://if.thekingwithdonkeyears.com"
+
+# specific description for If site
+description: "If 線故事"
+
+# If site excludes the Fanfic stories
+exclude:
+  - _posts/fanfic
+  - vendor
+
+# Navigation Data Source
+nav_data: navigation_if
+
+# Homepage Data Source
+home_data: home_if

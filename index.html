@@ -4,17 +4,19 @@ title: Home
 permalink: "/"
 ---
 
+{% assign home = site.data[site.home_data] %}
+
 <header>
-    <h1 class="page-title">首頁</h1>
+    <h1 class="page-title">{{ home.page_title }}</h1>
     <hr class="separator">
 </header>
 
 <section>
-    <p><strong>作者近況：</strong><br>氣象觀察站完結<br>短暫休息到一月底（嗎？<br>才怪，更新了舊聞</p>
+    <p><strong>作者近況：</strong><br>{{ home.author_status }}</p>
 </section>
 
 <section>
-    <h2>置頂文章</h2>
+    <h2>{{ home.sticky_title }}</h2>
     {% assign sticky_post = site.posts | where: "sticky", true | first %}
     {% if sticky_post %}
     <article>
@@ -26,7 +28,7 @@ permalink: "/"
 </section>
 
 <section>
-    <h2>最新文章</h2>
+    <h2>{{ home.latest_title }}</h2>
     <ul>
         {% for post in site.posts limit:3 %}
 

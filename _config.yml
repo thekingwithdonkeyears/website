@@ -8,6 +8,17 @@ og_image: "https://thekingwithdonkeyears.com/assets/images/og-image.png"
 include:
   - _pages
 
+# Default site (Fanfic) excludes the If stories
+exclude:
+  - _posts/if
+  - vendor
+
+# Navigation Data Source
+nav_data: navigation_fanfic
+
+# Homepage Data Source
+home_data: home_fanfic
+
 # 設定 Jekyll Plugins（如果有需要）
 plugins:
   - jekyll-sitemap

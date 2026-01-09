@@ -37,6 +37,7 @@
 
             <div class="name-switcher-actions">
                 <button id="btn-replace-names" class="name-switcher-btn">開始替換</button>
+                <button id="id-download-story" class="name-switcher-btn">下載文章 (.txt)</button>
                 <button id="btn-reset-names" class="name-switcher-btn">復原</button>
             </div>
         </div>
@@ -98,6 +99,35 @@
             if (contentArea && contentArea.dataset.originalHtml) {
                 contentArea.innerHTML = contentArea.dataset.originalHtml;
             }
+        });
+
+        document.getElementById('id-download-story').addEventListener('click', function () {
+            const contentArea = document.getElementById('story-content');
+            if (!contentArea) {
+                alert('請先解鎖文章內容，才能下載！');
+                return;
+            }
+
+            // Get text and clean it up a bit
+            let text = contentArea.innerText;
+
+            // Basic cleanup: remove excessive blank lines often caused by innerText on HTML
+            text = text.replace(/\n\s*\n/g, '\n\n').trim();
+
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+
+            // Attempt to get a title for the filename
+            const storyTitle = document.querySelector('h1')?.innerText || 'my_story';
+            const fileName = `${storyTitle.replace(/[\\/:*?"<>|]/g, '_')}.txt`;
+
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         });
     });
 </script>

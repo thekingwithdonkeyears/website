@@ -3,6 +3,10 @@ layout: default
 ---
 <h1>標籤：{{ page.title }}</h1>
 
+<!-- AdSense: Top -->
+<div class="google-ad-top" style="margin: 20px 0;">
+    {% include google-ad-post-top.html %}
+</div>
 
 <ul>
     {% for post in site.tags[page.title] %}
@@ -12,3 +16,8 @@ layout: default
     </li>
     {% endfor %}
 </ul>
+
+<!-- AdSense: Bottom -->
+<div class="google-ad-bottom" style="margin: 20px 0;">
+    {% include google-ad-post-bottom.html %}
+</div>

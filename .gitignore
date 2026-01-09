@@ -1,4 +1,6 @@
 _site/
+_site_fanfic/
+_site_if/
 .sass-cache/
 .jekyll-cache/
 .bundle/
@@ -9,6 +11,16 @@ node_modules/
 *.log
 *.lock
 _feedbacks/
+.obsidian/
+draft/
+_drafts/
+vendor/
+*.png
+*.jpg
+*.jpeg
+Cloudflare_Subdomain_Setup.md
+Multi_Site_Management_Guide.md
+解法.md
 
 # macOS
 .AppleDouble
