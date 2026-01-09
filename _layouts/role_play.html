@@ -123,6 +123,57 @@
             <div class="google-ad-bottom" style="margin: 20px 0;">
                 {% include google-ad-post-bottom.html %}
             </div>
+
+            <!-- 上下篇連結開始 -->
+            {% comment %}
+            先收集同一分類的文章，再排序，並找出當前文章的位置
+            {% endcomment %}
+            {% assign current_category = nil %}
+            {% for cat in page.categories %}
+            {% if cat != "同人" and cat != "TWICE" %}
+            {% assign current_category = cat %}
+            {% break %}
+            {% endif %}
+            {% endfor %}
+
+            {% if current_category == nil %}
+            {% assign current_category = page.categories | last %}
+            {% endif %}
+
+            {% assign related_posts = site.posts | where_exp:"post", "post.categories contains current_category" | sort:
+            "date" %}
+            {% for post in related_posts %}
+            {% if post.url == page.url %}
+            {% assign index = forloop.index0 %}
+            {% endif %}
+            {% endfor %}
+
+            <nav class="post-navigation">
+
+                {% if index and index > 0 %}
+                {% assign prev_index = index | minus: 1 %}
+                {% assign prev_post = related_posts[prev_index] %}
+                <a class="prev-post" href="{{ prev_post.url | prepend: site.baseurl }}">
+                    {{ prev_post.title }}
+                </a>
+                {% else %}
+                <!-- Spacer if no prev post -->
+                <div style="flex:1;"></div>
+                {% endif %}
+
+                {% assign last_index = related_posts.size | minus: 1 %}
+                {% if index and index < last_index %} {% assign next_index=index | plus: 1 %} {% assign
+                    next_post=related_posts[next_index] %} <a class="next-post"
+                    href="{{ next_post.url | prepend: site.baseurl }}">
+                    {{ next_post.title }}
+                    </a>
+                    {% else %}
+                    <!-- Spacer if no next post -->
+                    <div style="flex:1;"></div>
+                    {% endif %}
+            </nav>
+            <p>留言要作者手動審核後才會發佈，如果沒即時出現是正常現象，請耐心等候</p>
+            <!-- 上下篇連結結束 -->
         </main>
     </div>
 
