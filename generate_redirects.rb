@@ -14,22 +14,35 @@ File.open(OUTPUT_FILE, 'w') do |f|
   Dir.glob("#{POSTS_DIR}/*.md").each do |post_file|
     filename = File.basename(post_file, '.md')
     
-    # Extract slug from filename: YYYY-MM-DD-slug
-    if filename =~ /^\d{4}-\d{2}-\d{2}-(.*)$/
-      slug = $1
+    if filename =~ /^(\d{4})-(\d{2})-(\d{2})-(.*)$/
+      year, month, day, slug = $1, $2, $3, $4
       
-      # The source path on the old site
-      source_path = "/#{slug}/"
+      # Target is always the subdomain (assuming subdomain setup supports /:slug/ or matches source)
+      # If the target subdomain actually follows /:slug/, we keep it simple.
+      target_url = "#{TARGET_DOMAIN}/#{URI.encode_www_form_component(slug)}/"
       
-      # The target URL on the new site
-      # Assuming the structure is preserved
-      target_url = "#{TARGET_DOMAIN}/#{slug}/"
+      # We need to generate multiple variations to catch old incoming links
       
-      # Cloudflare _redirects format: /source-path target-url status
-      f.puts "#{source_path} #{target_url} 301"
+      # 1. Date-based path (Old Jekyll default): /YYYY/MM/DD/slug/
+      # We must URI encode the source path too, especially for Chinese
+      encoded_slug = URI.encode_www_form_component(slug)
       
-      # Also add entry without trailing slash just in case
-      f.puts "/#{slug} #{target_url} 301"
+      # Variation A: /YYYY/MM/DD/slug/
+      f.puts "/#{year}/#{month}/#{day}/#{encoded_slug}/ #{target_url} 301"
+      f.puts "/#{year}/#{month}/#{day}/#{encoded_slug} #{target_url} 301"
+
+      # Variation B: /slug/ (Current config default)
+      f.puts "/#{encoded_slug}/ #{target_url} 301"
+      f.puts "/#{encoded_slug} #{target_url} 301"
+
+      # Variation C: Lowercase slug (for case insensitive matching)
+      if slug != slug.downcase
+        lower_slug = URI.encode_www_form_component(slug.downcase)
+        f.puts "/#{year}/#{month}/#{day}/#{lower_slug}/ #{target_url} 301"
+        f.puts "/#{year}/#{month}/#{day}/#{lower_slug} #{target_url} 301"
+        f.puts "/#{lower_slug}/ #{target_url} 301"
+        f.puts "/#{lower_slug} #{target_url} 301"
+      end
     end
   end
 end

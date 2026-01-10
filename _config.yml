@@ -16,7 +16,7 @@ exclude:
   - vendor
 
 # Navigation Data Source
-nav_data: navigation_fanfic
+nav_data: navigation_main
 
 # Homepage Data Source
 home_data: home_fanfic
