@@ -19,7 +19,7 @@ exclude:
 nav_data: navigation_main
 
 # Homepage Data Source
-home_data: home_fanfic
+home_data: home_main
 
 # 設定 Jekyll Plugins（如果有需要）
 plugins:
