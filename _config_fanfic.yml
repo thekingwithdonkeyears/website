@@ -1,0 +1,9 @@
+# Configuration for "Fanfic" Subdomain
+# This file overrides settings in _config.yml
+
+url: "https://fanfic.thekingwithdonkeyears.com"
+
+# Fanfic site excludes the If stories (already in _config.yml, but good to be explicit or if we change base)
+exclude:
+  - _posts/if
+  - vendor

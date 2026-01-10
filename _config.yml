@@ -7,6 +7,7 @@ og_image: "https://thekingwithdonkeyears.com/assets/images/og-image.png"
 # 確保 Jekyll 讀取 _pages 內的 HTML 檔案
 include:
   - _pages
+  - _redirects
 
 # Default site (Fanfic) excludes the If stories
 exclude:
