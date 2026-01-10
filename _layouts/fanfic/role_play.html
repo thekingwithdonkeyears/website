@@ -367,6 +367,9 @@
 
       }) ();
     </script>
+    {% if site.enable_age_verification %}
+    {% include age_verification.html %}
+    {% endif %}
 </body>
 
 </html>

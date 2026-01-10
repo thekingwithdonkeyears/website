@@ -71,7 +71,7 @@
         <hr>
 
         {% if page.tags contains '你行你上' or page.tags contains 'YouNameIt' %}
-        {% include name_switcher.html %}
+        {% include fanfic/name_switcher.html %}
         {% endif %}
 
 
@@ -200,6 +200,9 @@
         }
       });
     </script>
+    {% if site.enable_age_verification %}
+    {% include age_verification.html %}
+    {% endif %}
 </body>
 
 </html>

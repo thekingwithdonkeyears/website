@@ -7,3 +7,6 @@ url: "https://fanfic.thekingwithdonkeyears.com"
 exclude:
   - _posts/if
   - vendor
+
+# Enable Age Verification Modal
+enable_age_verification: true

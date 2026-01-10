@@ -25,6 +25,9 @@
     <footer>
         <p>&copy; {{ site.time | date: "%Y" }} 國王和她的驢耳朵. All rights reserved.</p>
     </footer>
+    {% if site.enable_age_verification %}
+    {% include age_verification.html %}
+    {% endif %}
 </body>
 
 </html>
