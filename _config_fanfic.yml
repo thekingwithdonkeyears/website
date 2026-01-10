@@ -15,3 +15,6 @@ enable_age_verification: true
 # Override include to exclude _redirects (prevents generic loop)
 include:
   - _pages
+
+# Navigation for Fanfic Site
+nav_data: navigation_fanfic
