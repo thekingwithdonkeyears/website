@@ -12,6 +12,7 @@ exclude:
 # Enable Age Verification Modal
 enable_age_verification: true
 
+home_data: home_fanfic
 # Override include to exclude _redirects (prevents generic loop)
 include:
   - _pages
